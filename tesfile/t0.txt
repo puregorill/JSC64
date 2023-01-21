@@ -1,0 +1,13 @@
+
+let a = b + c * d
+
+
+
+
+a:
+  !byte 10
+b: 
+  !byte 20  
+c:
+  !byte 30
+
