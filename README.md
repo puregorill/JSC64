@@ -35,6 +35,14 @@ C64 Studio: The C64 Studio is a handy Commodore development system for Windows o
 VICE: ("Versatile Commodore Emulator", for Windows also WinVICE) is a program that runs on various platforms and can execute programs for Commodore's 8-bit computers, e.g. the C64, the PET, VIC20 and much more.
 
 <br />
+  
+********************
+State of development
+********************
+
+Very early stage. Currently working on mathematical parser. Not much else implemented yet.
+
+<br />
  
 *******************
 One word of warning
