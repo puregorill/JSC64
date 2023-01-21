@@ -1,6 +1,6 @@
 # JSC64
 
-**
+****************
 JSC64 (read: Javascript Compiler for the (Commodore) 64) +
 **
 
