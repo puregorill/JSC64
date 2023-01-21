@@ -1,13 +1,2 @@
 
-let a = b + c * d
-
-
-
-
-a:
-  !byte 10
-b: 
-  !byte 20  
-c:
-  !byte 30
-
+let a = b + c * d - ( x + y ) * #2
