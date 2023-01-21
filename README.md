@@ -12,7 +12,7 @@ This project fulfills 2 learning goals for me personally:
   1) To take first steps in javascript
   2) To write a small compiler
 
-I'm more of a C person, Basic person and Pascal person, so I don't have much knowledge about all the neat OOP features of javascript and I think I'm going to program javascript more C style and less the way JS should probably be programmed. 
+I'm more of a C person, Basic person and Pascal person, so I don't have much knowledge about all the neat OOP features of javascript and I think I'm going to program javascript more C style and less the way JS should probably be programmed. So I am using all that stuff like procedures/functions, global variables and more nasty things.
 
 But I have to stand by that, OOP style was never mine and I could never figure out what it was all about. Maybe it's my age, I'm from the C64 era and learned to program like that (as a hobbyist, mind you).
 
