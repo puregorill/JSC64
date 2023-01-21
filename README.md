@@ -54,6 +54,8 @@ Very early stage. Currently working on mathematical parser. Not much else implem
 
 If you have a look at main.js and main.html, then it should be no issue to trace the structure of the JS program from there.
 
+Codebase not extremely, but still a bit messed up and is certainly subject to future changes and restructuring.
+
 <br />
  
 *******************
