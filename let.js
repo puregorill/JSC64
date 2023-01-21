@@ -13,8 +13,21 @@ var math_stack = [];
     // addressing_mode
     
 var tac = [];
-
+    // operator
+    // left_data_type
+    // left_value
+    // left_addressing_mode
+    // right_data_type
+    // right_value
+    // right_addressing_mode
+    // dest_data_type
+    // dest_value
+    // dest_addressing_mode
+        
 var target_operand;
+   // data_type
+   // value
+   // addressing_mode
   
 
 //============================================================================
