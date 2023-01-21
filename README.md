@@ -30,7 +30,7 @@ But I have to stand by that, OOP style was never mine and I could never figure o
 How can you execute JSC64?
 **************************
 
-Just start "main.html" in a browser, and the rest of it should be pretty self-explanatory.
+Just start <main.html> in a browser, and the rest of it should be pretty self-explanatory.
 
 You can compile the testfile or type something yourself in the left text field.
 
@@ -52,7 +52,7 @@ State of development
 
 Very early stage. Currently working on mathematical parser. Not much else implemented yet.
 
-If you have a look at main.js and main.html, then it should be no issue to trace the structure of the JS program from there.
+If you have a look at <main.js> and <main.html>, then it should be no issue to trace the structure of the JS program from there.
 
 Codebase not extremely, but still a bit messed up and is certainly subject to future changes and restructuring.
 
