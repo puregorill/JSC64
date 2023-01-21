@@ -16,7 +16,7 @@ If something does not work or causes damage, I take no responsibility in any way
 
 This project fulfills 2 learning goals for me personally:
   1) To take first steps in javascript (I just started learning javascript a week before starting this toy compiler project)
-  2) To write a small toy compiler
+  2) To develop a small toy compiler
 
 <br />
 
