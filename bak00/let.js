@@ -13,21 +13,6 @@ var math_stack = [];
     // addressing_mode
     
 var tac = [];
-    // operator
-    // left_data_type
-    // left_value
-    // left_addressing_mode
-    // right_data_type
-    // right_value
-    // right_addressing_mode
-    // dest_data_type
-    // dest_value
-    // dest_addressing_mode
-        
-var target_operand;
-   // data_type
-   // value
-   // addressing_mode
   
 
 //============================================================================
@@ -38,16 +23,13 @@ function ouputStackCode(item) {
   
   let data_type = "";
   let value = "";
-  let addressing_mode = "";
   
   if ( typeof item.data_type !== "undefined" ) 
     data_type = item.data_type;
   if ( typeof item.value !== "undefined" ) 
     value = item.value;
-  if ( typeof item.addressing_mode !== "undefined" ) 
-    addressing_mode = " ("+item.addressing_mode+")";
   
-  DebugCode( item.opcode + " " + data_type + " " + value + addressing_mode );
+  DebugCode( item.opcode + " " + data_type + " " + value );
   
 }
 function parseMathExpressionToMathStack() {
@@ -125,12 +107,6 @@ function parseMathExpressionToMathStack() {
   
   math_stack = [];
   addExpression();
-  math_stack.push({
-    opcode: "pull",
-    data_type: target_operand.data_type,
-    value: target_operand.value,
-    addressing_mode: target_operand.addressing_mode
-  });
   
 }
 
@@ -140,12 +116,7 @@ function parseMathExpressionToMathStack() {
 
 function ouputTacCode(item) { 
   
-  //DebugCode( item.dest_value + " = " + item.left_value + " " + item.operator + " " + item.right_value );
-  DebugCode(   item.dest_data_type  + " " + item.dest_value  + " (" + item.dest_addressing_mode  + ") = "
-             + item.left_data_type  + " " + item.left_value  + " (" + item.left_addressing_mode  + ") "
-             + item.operator + " "
-             + item.right_data_type + " " + item.right_value + " (" + item.right_addressing_mode + ") "
-           );
+  DebugCode( item.dest_value + " = " + item.left_value + " " + item.operator + " " + item.right_value );
   
 }
 function createTAC() {
@@ -189,7 +160,6 @@ function createTAC() {
     
   tac = [];
   createTempNameArray();
-  let previous_dest_value;
   
   for ( var i=0; i<math_stack.length; i++ ) {
     
@@ -198,41 +168,33 @@ function createTAC() {
       || math_stack[i].opcode == "*"
       || math_stack[i].opcode == "/" ) {
         
-      // get math operator
+      // math operator
       
       let operator = math_stack[i].opcode;
       
-      // --- get right side of operator -------------------
+      // right side of operator
       
       let right_data_type = math_stack[i-1].data_type;
       let right_value = math_stack[i-1].value;
       let right_addressing_mode = math_stack[i-1].addressing_mode;
       setTempToUnused( math_stack[i-1].value );
       
-      // --- get left side of operator --------------------
+      // left side of operator
       
       let left_data_type = math_stack[i-2].data_type;
       let left_value = math_stack[i-2].value;
       let left_addressing_mode = math_stack[i-2].addressing_mode;
       setTempToUnused( math_stack[i-2].value );
 
-      // --- get destination ------------------------------
+      // destination
       
-      // erase the 2 operands from stack
+      let temp_name = getNextFreeTempName();
       
-      math_stack.splice(i-2,2); 
-      
-      // use stack position of operator for new destination operand
-      
-      let dest_value = getNextFreeTempName();
-      
+      math_stack.splice(i-2,2);
       math_stack[i-2].opcode = "push";
-      math_stack[i-2].value = dest_value;
+      math_stack[i-2].value = temp_name;
       math_stack[i-2].data_type = "byte";
       math_stack[i-2].addressing_mode = "abs";
-      
-      
-      // --- write TAC ------------------------------------
       
       tac.push({
         operator: operator,
@@ -247,36 +209,6 @@ function createTAC() {
         dest_addressing_mode: math_stack[i-2].addressing_mode        
       });
       
-      // --- swap operands in certain situations ----------
-      // --- for optimization reasons ---------------------
-      
-      let current_tac_pos = tac.length-1;
- 
-      if (  ( ( previous_dest_value == tac[ current_tac_pos ].right_value ) && 
-              ( tac[ current_tac_pos ].operator =="+" || tac[ current_tac_pos ].operator =="*" ) ) ||
-            (   tac[ current_tac_pos ].left_addressing_mode == "imm"  &&
-              ( tac[ current_tac_pos ].operator =="*" || tac[ current_tac_pos ].operator =="/" ) )  ) {
-        
-        let tmp = tac[ current_tac_pos ].left_value;
-        tac[ current_tac_pos ].left_value = tac[ current_tac_pos ].right_value;
-        tac[ current_tac_pos ].right_value = tmp;
-        
-        tmp = tac[ current_tac_pos ].left_addressing_mode;
-        tac[ current_tac_pos ].left_addressing_mode = tac[ current_tac_pos ].right_addressing_mode;
-        tac[ current_tac_pos ].right_addressing_mode = tmp;
-        
-        tmp = tac[ current_tac_pos ].left_data_type;
-        tac[ current_tac_pos ].left_data_type = tac[ current_tac_pos ].right_data_type;
-        tac[ current_tac_pos ].right_data_type = tmp;        
-       
-      }
-      
-      // --- save current dest_value for compare above ----
-      
-      previous_dest_value = dest_value;
-      
-      // --- take the 2 erased operands into account ------
-      
       i = i - 2;
   
     }
@@ -285,12 +217,12 @@ function createTAC() {
   
   if ( tac.length > 0 ) {
 
-    // exchange last dest _T0_  with target operand
+    // exchange last _T0_ destination
 
     let tac_last_element = tac.length-1
-    tac[tac_last_element].dest_value = target_operand.value
-    tac[tac_last_element].dest_data_type = target_operand.data_type
-    tac[tac_last_element].dest_addressing_mode = target_operand.addressing_mode
+    tac[tac_last_element].dest_value = math_stack[i-1].value
+    tac[tac_last_element].dest_data_type = math_stack[i-1].data_type
+    tac[tac_last_element].dest_addressing_mode = math_stack[i-1].addressing_mode
     
   } else {
     
@@ -304,9 +236,9 @@ function createTAC() {
       right_data_type: "",
       right_value: "",
       right_addressing_mode: "",
-      dest_data_type: target_operand.data_type,
-      dest_value: target_operand.value,
-      dest_addressing_mode: target_operand.addressing_mode
+      dest_data_type: math_stack[i-1].data_type,
+      dest_value: math_stack[i-1].value,
+      dest_addressing_mode: math_stack[i-1].addressing_mode        
     });
     
   }
@@ -322,16 +254,29 @@ function handleLet() {
   // Get target operand
   
   nextToken();
-  target_operand = getOperand();
+  let target_operand = getOperand();
   
   nextToken();  // skip "="
   nextToken();  // first token of math expression
   
+  // Parse math expression to stack code
+  
   parseMathExpressionToMathStack();
-  math_stack.forEach(ouputStackCode); // Debug output of Stack code
+  math_stack.push({
+    opcode: "pull",
+    data_type: target_operand.data_type,
+    value: target_operand.value,
+    addressing_mode: target_operand.addressing_mode
+  });
+  
+  // Debug output of stack code
+  
+  math_stack.forEach(ouputStackCode);
+  
+  // Create TAC from stack code
   
   createTAC();
-  tac.forEach(ouputTacCode); // Debug output of TAC code
+  tac.forEach(ouputTacCode); 
   
 }
 

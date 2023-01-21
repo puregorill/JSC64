@@ -1,30 +1,6 @@
 /*****************************************************************************
-    LOADER
+    LOADER - FILE READER 
  *****************************************************************************/
- 
-file_name.addEventListener( "change", loadSourceFile );
-function postSourceToTextareaSource( loaded_source_file ) {
-  
-  textarea_source.textContent = loaded_source_file.target.result;
-  
-  // ==== MAIN CALL TO COMPILE AFTER LOADING ==============================
-  
-  compile();    
-
-}
-function loadSourceFile() {
-
-  if ( this.files && this.files[0] ) {
-    
-    var file_name = this.files[0];
-    var reader = new FileReader();
-    
-    reader.addEventListener( "load", postSourceToTextareaSource );
-    reader.readAsBinaryString(file_name);  
-    
-  } 
-  
-}
 
 function createSourceLinesFromSourceText() {
   
@@ -53,3 +29,30 @@ function createSourceLinesFromSourceText() {
   
 }
 
+// I haven't understood what this file reader really does, but it works
+// Code taken from somewhere in the internet
+
+file_name.addEventListener("change", function () {
+  
+  if (this.files && this.files[0]) {
+    
+    var file_name = this.files[0];
+    var reader = new FileReader();
+    
+    reader.addEventListener('load', function (e) {
+      
+      textarea_source.textContent = e.target.result;
+      
+      // ==== MAIN CALL TO COMPILE AFTER LOADING ==============================
+      
+      compile();
+      
+      // ==== MAIN CALL TO COMPILE AFTER LOADING ==============================
+      
+    });
+    
+    reader.readAsBinaryString(file_name);
+    
+  }
+  
+});
