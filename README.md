@@ -8,6 +8,10 @@ A nonprofessional hobbyist attempting to write a compiler in Javascript for the 
 
 I am not a professional coder in any way and to be honest I don't really know what I am doing.
 
+Everything here is for personal use and educational purposes only. Everything is absolutely without warranty. 
+
+If something does not work or causes damage, I take no responsibility in any way.
+
 <br />
 
 This project fulfills 2 learning goals for me personally:
