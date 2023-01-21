@@ -3,6 +3,7 @@
  *****************************************************************************/
  
 file_name.addEventListener( "change", loadSourceFile );
+
 function postSourceToTextareaSource( loaded_source_file ) {
   
   textarea_source.textContent = loaded_source_file.target.result;
