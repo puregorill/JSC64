@@ -38,11 +38,11 @@ If you want to run the generated assembly code (it is kind of ACME style), then 
 
 <br />
 
-C64 Studio: The C64 Studio is a Commodore development system for Windows on the PC.
+C64 Studio is a Commodore development system for Windows on the PC.
 
-VICE: ("Versatile Commodore Emulator", for Windows also WinVICE) is a program that can execute programs for Commodore's 8-bit computers, e.g. the C64, the PET, VIC20 and much more.
+VICE ("Versatile Commodore Emulator", for Windows also WinVICE) is a program that can execute programs for Commodore's 8-bit computers, e.g. the C64, the PET, VIC20 and much more.
 
-ACME: ACME is a free crossassembler. It supports NMOS 6502 and more processors.
+ACME is a free crossassembler. It supports NMOS 6502 and more processors.
 
 <br />
   
