@@ -8,7 +8,7 @@
 function compile()
 
   is called by EITHER  
-    (1) function "file_name.addEventListener()" right after loading (see loader.js)
+    (1) function "postSourceToTextareaSource()" right after loading (see loader.js)
   OR
     (2) Button "<button type="button" onclick="compile()" >Compile</button>"    
 */

@@ -5,7 +5,15 @@
 file_name.addEventListener( "change", loadSourceFile );
 
 function postSourceToTextareaSource( loaded_source_file ) {
+  
   textarea_source.textContent = loaded_source_file.target.result;
+  
+    // ==== MAIN CALL TO COMPILE AFTER LOADING ===================
+    
+    compile();
+    
+    // ==== MAIN CALL TO COMPILE AFTER LOADING ===================
+  
 }
 
 function loadSourceFile() {
@@ -17,12 +25,6 @@ function loadSourceFile() {
     
     reader.addEventListener( "load", postSourceToTextareaSource );
     reader.readAsBinaryString(file_name);  
-    
-    // ==== MAIN CALL TO COMPILE AFTER LOADING ==============================
-    
-    compile();
-    
-    // ==== MAIN CALL TO COMPILE AFTER LOADING ==============================    
     
   } 
   
