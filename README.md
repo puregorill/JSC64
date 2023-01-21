@@ -8,9 +8,13 @@ A nonprofessional hobbyists attempt to write a compiler in javascript for the MO
 
 I am not a professional coder in any way and to be honest I don't really know what I am doing.
 
+<br />
+
 This project fulfills 2 learning goals for me personally:
   1) To take first steps in javascript
   2) To write a small compiler
+
+<br />
 
 I'm more of a C person, Basic person and Pascal person, so I don't have much knowledge about all the neat OOP features of javascript and I think I'm going to program javascript more C style and less the way JS should probably be programmed. So I am using all that stuff like procedures/functions, global variables and more nasty things.
 
