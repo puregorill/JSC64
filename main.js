@@ -5,8 +5,7 @@
  *****************************************************************************/
 
 /*
-function compile()
-
+function compile() (see compiler.js)
   is called by EITHER  
     (1) function "postSourceToTextareaSource()" right after loading (see loader.js)
   OR
