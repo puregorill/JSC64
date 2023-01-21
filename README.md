@@ -10,7 +10,7 @@ I am not a professional coder in any way and to be honest I don't really know wh
 
 Everything here is for personal use and educational purposes only. Everything is absolutely without warranty. 
 
-If something does not work or causes damage, I take no responsibility in any way (see LICENCE file).
+If something does not work or causes damage, I take no responsibility in any way (see LICENSE file).
 
 <br />
 
