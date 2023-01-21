@@ -4,7 +4,7 @@
 JSC64 (read: Javascript Compiler for the (Commodore) 64)
 ********************************************************
 
-A nonprofessional hobbyists attempt to write a compiler in javascript for the MOS 6502/6510 processor and the Commodore 64.
+A nonprofessional hobbyist attempting to write a compiler in javascript for the MOS 6502/6510 processor and the Commodore 64.
 
 I am not a professional coder in any way and to be honest I don't really know what I am doing.
 
