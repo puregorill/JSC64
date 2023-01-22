@@ -44,13 +44,9 @@ function compile() {
   
   for ( current_source_line_index = 0; current_source_line_index < source_line.length; current_source_line_index++) {
     
-    // Tokenize current source line
-    // should return with "current_token = 0"
-    // but doesn't matter we use token[0] anyway
-    
-    tokenizeCurrentSourceLine();
-    emitCurrentSourceLineToCode(); // Emit current source line (for debugging)
-    // debug_emitTokensToCode(); // Emit output of all tokens (for debugging)
+    tokenizeCurrentSourceLine();   // returns with global "current_token = 0"
+    emitCurrentSourceLineToCode(); // (for debugging)
+    // debug_emitTokensToCode();   // (for debugging)
     
     //-----------------------------------------------------------------------
     //  Keyword handlers
