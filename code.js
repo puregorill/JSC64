@@ -49,7 +49,7 @@ function getCurrentSourceLineAsComment() {
 function emitCurrentSourceLineAsCommentToCode() {
   emitCodeLine( "\n"+getCurrentSourceLineAsComment() );
 }
-function emitOriginalSourceLineToCode() {
+function emitCurrentOriginalSourceLineToCode() {
   emitCodeLine( "  "+source_line[current_source_line_index].line.trim() );
 }
 

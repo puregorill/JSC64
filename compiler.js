@@ -25,22 +25,24 @@ function currentTokenType() {
 
 function compile() {
   
-  // Called by EITHER  
-  // (1) function "file_name.addEventListener()" right after loading (see loader.js)
-  // OR
-  // (2) Button "<button type="button" onclick="compile()" >Compile</button>"    
+  /*   
+  is called by EITHER  
+    (1) function "postSourceToTextareaSource()" right after loading (see loader.js)
+  OR
+    (2) Button "<button type="button" onclick="compile()" >Compile</button>"    
+  */  
   
   // Split every source line into global var "source_line"
-  // Trim input, ignore every emtpy line and comment with "//"
+  // Ignore every emtpy line & comment starting with "//"
   
   createSourceLinesFromSourceText(); 
  
-  // Init block
+  // Init compiler
   
   textarea_output.value = "";
   code = [];
   
-  // Block
+  // --- Block ------------------------------------------------------------------------------------------------------
   
   for ( current_source_line_index = 0; current_source_line_index < source_line.length; current_source_line_index++) {
     
@@ -72,9 +74,9 @@ function compile() {
     
     // *** if nothing matches, output original line ***
     
-    else emitOriginalSourceLineToCode();
+    else emitCurrentOriginalSourceLineToCode();
     
-  } /* next */
+  } // next ---------------------------------------------------------------------------------------------------------
   
   writeCodeToTextAreaOutput();
   

@@ -53,11 +53,11 @@ function tokenizeCurrentSourceLine() {
   }
   
   
-  //=========================================================================
+  //*********************************************************************************************************
   //  Tokenizer loop
-  //=========================================================================
+  //*********************************************************************************************************
     
-  let current_character_position = 0; // starts with 0, hence "let position = current_character_position+1" below
+  let current_character_position = 0; // starts with 0, hence "position = current_character_position+1" below
   
   while( current_character_position < source_line[current_source_line_index].line.length ) {    
    
@@ -197,7 +197,7 @@ function tokenizeCurrentSourceLine() {
     });
     current_character_position++;
     
-  } /* wend */
+  } // wend *************************************************************************************************
     
     
   //=========================================================================
