@@ -212,8 +212,8 @@ function tokenizeCurrentSourceLine() {
   
   // After the line is tokenized
   // we start at token 0 as current token
-  // global var "current_token"
+  // global var "current_token_index"
   
-  current_token = 0;
+  current_token_index = 0;
   
 }

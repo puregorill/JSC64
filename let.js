@@ -137,10 +137,10 @@ function parseMathExpressionToMathStack() {
   });
   
 }
+
+// TODO optimizeStackCode()
 function optimizeStackCode() {
-  
-    // TODO optimizeStackCode()
-    
+  // stub
 }
 
 //============================================================================
@@ -285,7 +285,7 @@ function createTAC() {
           
         }
         
-        // we don't need a "sta _T0_: lda _T0_", both can be ommited
+        // we don't need "sta _Tx_: lda _Tx_", both can be ommited
            
         if ( previous_dest_value == tac[current_tac_pos].left_value ) {
           tac[current_tac_pos-1].write_dest = false;
@@ -337,10 +337,26 @@ function createTAC() {
 }
 
 //============================================================================
+//  TODO Output code for float expression
+//============================================================================
+
+//============================================================================
+//  TODO Output code for word expression
+//============================================================================
+
+//============================================================================
+//  Output code for byte expression
+//============================================================================
+
+
+
+//============================================================================
 //  Let handler
 //============================================================================
 
 function handleLet() {
+  
+  emitCurrentSourceLineAsCommentToCode();
   
   // Get gobal "target_operand"
   

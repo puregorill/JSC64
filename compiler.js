@@ -7,16 +7,16 @@
 //============================================================================
 
 function nextToken() {
-  current_token++;
+  current_token_index++;
 }
 function currentTokenValue() {
-  return token[ current_token ].value.toLowerCase();
+  return token[ current_token_index ].value.toLowerCase();
 }
 function currentTokenValueWithCase() {
-  return token[ current_token ].value;
+  return token[ current_token_index ].value;
 }
 function currentTokenType() {
-  return token[ current_token ].type;
+  return token[ current_token_index ].type;
 }
 
 //============================================================================
@@ -44,8 +44,8 @@ function compile() {
   
   for ( current_source_line_index = 0; current_source_line_index < source_line.length; current_source_line_index++) {
     
-    tokenizeCurrentSourceLine();   // returns with global "current_token = 0"
-    emitCurrentSourceLineToCode(); // (for debugging)
+    tokenizeCurrentSourceLine();   // returns with global "current_token_index = 0"
+    //emitCurrentSourceLineAsCommentToCode(); // (for debugging)
     // debug_emitTokensToCode();   // (for debugging)
     
     //-----------------------------------------------------------------------
@@ -68,8 +68,11 @@ function compile() {
     // *** Conditionals ***
          
     else if ( lcase_value == "let" ) handleLet();
-
     
+    
+    // *** if nothing matches, output original line ***
+    
+    else emitOriginalSourceLineToCode();
     
   } /* next */
   

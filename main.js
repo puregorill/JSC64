@@ -36,8 +36,8 @@ var token = [];
     // str value    <-- the actual lexeme like "let", "<",...
     // num position <-- first character of token
 
-var current_token = 0; 
-    // token[ current_token ]
+var current_token_index = 0; 
+    // token[ current_token_index ]
     
 // Holds all emitted code lines
 

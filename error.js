@@ -4,7 +4,7 @@
 
 function ThrowSyntaxError( message ) {
   
-  message = "Syntax Error in line " + source_line[current_source_line_index].line_number + " at position " + token[current_token].position + ".\n\n" + message + ".\n\nCompilation aborted!";
+  message = "Syntax Error in line " + source_line[current_source_line_index].line_number + " at position " + token[current_token_index].position + ".\n\n" + message + ".\n\nCompilation aborted!";
 
   // Message in "textarea_output"
   

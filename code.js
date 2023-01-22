@@ -38,16 +38,15 @@ function getCurrentSourceLineAsComment() {
   var comment_line = "";
   var tmp_line = source_line[current_source_line_index].line.trim();
   
-  if ( tmp_line[0] !== ";" ) {
+  if ( tmp_line[0] !== ";" )
     comment_line = "; "
-  }
   
   comment_line += tmp_line + " [Line " + source_line[current_source_line_index].line_number + "]"
   
   return comment_line
   
 }
-function emitCurrentSourceLineToCode() {
+function emitCurrentSourceLineAsCommentToCode() {
   emitCodeLine( "\n"+getCurrentSourceLineAsComment() );
 }
 function emitOriginalSourceLineToCode() {

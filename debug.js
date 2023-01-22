@@ -23,7 +23,7 @@ function debug_postTokensToTextAreaOutput() {
 }
 function debug_currentToken() {
   
-  textarea_output.value += debug_getTokenOutputLineByIndex( current_token );
+  textarea_output.value += debug_getTokenOutputLineByIndex( current_token_index );
   
   // Terminate script execution
   throw new Error( '"END" BY DEBUG FUNCTION "debug_currentToken()"' );
