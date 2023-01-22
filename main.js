@@ -43,5 +43,7 @@ var current_token = 0;
 
 var code = [];
     // str line     <-- code line
+    
+var optimization_level = 1;
 
     

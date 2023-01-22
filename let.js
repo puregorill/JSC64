@@ -222,7 +222,8 @@ function createTAC() {
       
       math_stack.splice(i-2,2); 
       
-      // use stack position of operator for new destination operand
+      // use stack position of former operator 
+      // for new destination operand
       
       let dest_value = getNextFreeTempName();
       
@@ -251,24 +252,25 @@ function createTAC() {
       // --- for optimization reasons ---------------------
       
       let current_tac_pos = tac.length-1;
+      let tac_operator = tac[current_tac_pos].operator;
  
-      if (  ( ( previous_dest_value == tac[ current_tac_pos ].right_value ) && 
-              ( tac[ current_tac_pos ].operator =="+" || tac[ current_tac_pos ].operator =="*" ) ) ||
-            (   tac[ current_tac_pos ].left_addressing_mode == "imm"  &&
-              ( tac[ current_tac_pos ].operator =="*" || tac[ current_tac_pos ].operator =="/" ) )  ) {
+      if (  optimization_level > 0 &&
+            ( tac_operator=="*" || tac_operator=="+" ) && 
+            ( tac[current_tac_pos].left_addressing_mode == "imm" || 
+              previous_dest_value == tac[ current_tac_pos ].right_value )  ) {
         
-        let tmp = tac[ current_tac_pos ].left_value;
-        tac[ current_tac_pos ].left_value = tac[ current_tac_pos ].right_value;
-        tac[ current_tac_pos ].right_value = tmp;
+        let tmp = tac[current_tac_pos].left_value;
+        tac[current_tac_pos].left_value = tac[current_tac_pos].right_value;
+        tac[current_tac_pos].right_value = tmp;
         
-        tmp = tac[ current_tac_pos ].left_addressing_mode;
-        tac[ current_tac_pos ].left_addressing_mode = tac[ current_tac_pos ].right_addressing_mode;
-        tac[ current_tac_pos ].right_addressing_mode = tmp;
+        tmp = tac[current_tac_pos].left_addressing_mode;
+        tac[current_tac_pos].left_addressing_mode = tac[current_tac_pos].right_addressing_mode;
+        tac[current_tac_pos].right_addressing_mode = tmp;
         
-        tmp = tac[ current_tac_pos ].left_data_type;
-        tac[ current_tac_pos ].left_data_type = tac[ current_tac_pos ].right_data_type;
-        tac[ current_tac_pos ].right_data_type = tmp;        
-       
+        tmp = tac[ current_tac_pos].left_data_type;
+        tac[current_tac_pos].left_data_type = tac[current_tac_pos].right_data_type;
+        tac[current_tac_pos].right_data_type = tmp;        
+         
       }
       
       // --- save current dest_value for compare above ----
@@ -319,7 +321,7 @@ function createTAC() {
 
 function handleLet() {
   
-  // Get target operand
+  // Get gobal "target_operand"
   
   nextToken();
   target_operand = getOperand();
