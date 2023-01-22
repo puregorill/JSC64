@@ -16,7 +16,7 @@ function debug_emitTokensToCode() {
   
 }
 function DebugCode( text ) {
-  emitCodeLine( "Debug: " + text );
+  emitCodeLine( "; Debug: " + text );
 }
 
 //============================================================================
@@ -25,7 +25,7 @@ function DebugCode( text ) {
 
 function emitCodeLine( line ) {
   code.push({
-    line: line
+    line: "  "+line
   });
 }
 
@@ -46,12 +46,37 @@ function getCurrentSourceLineAsComment() {
   return comment_line
   
 }
+
 function emitCurrentSourceLineAsCommentToCode() {
   emitCodeLine( "\n"+getCurrentSourceLineAsComment() );
 }
 function emitCurrentOriginalSourceLineToCode() {
-  emitCodeLine( "  "+source_line[current_source_line_index].line.trim() );
+  emitCodeLine( source_line[current_source_line_index].line.trim() );
 }
+
+//============================================================================
+//  Emit 6502 opcodes
+//============================================================================
+
+function emitLDA( operand ) {
+  emitCodeLine( "lda " + operand );
+}
+function emitSTA( operand ) {
+  emitCodeLine( "sta " + operand );
+}
+function emitCLC() {
+  emitCodeLine( "clc" );
+}
+function emitSEC() {
+  emitCodeLine( "sec" );
+}
+function emitADC( operand ) {
+  emitCodeLine( "adc " + operand );
+}
+function emitSBC( operand ) {
+  emitCodeLine( "sbc " + operand );
+}
+
 
 //============================================================================
 //  Write finally the entire code

@@ -14,9 +14,9 @@ var math_stack = [];
     
 var tac = [];
     // operator
-    // write_dest
+    // store_dest
     // load_left
-    // write_dest
+    // store_dest
     // load_left
     // left_data_type
     // left_value
@@ -149,7 +149,7 @@ function optimizeStackCode() {
 
 function ouputTacCode(item) { 
   
-  DebugCode(   item.dest_data_type.padEnd(5," ") + " " + item.dest_value.padEnd(4," ") + " [" + item.write_dest.toString().substr(0,1) + "] (" + item.dest_addressing_mode.padEnd(4," ")  + ")  =  "
+  DebugCode(   item.dest_data_type.padEnd(5," ") + " " + item.dest_value.padEnd(4," ") + " [" + item.store_dest.toString().substr(0,1) + "] (" + item.dest_addressing_mode.padEnd(4," ")  + ")  =  "
              + item.left_data_type.padEnd(5," ") + " " + item.left_value.padEnd(4," ") + " [" + item.load_left.toString().substr(0,1)  + "] (" + item.left_addressing_mode.padEnd(4," ")  + ")  "
              + item.operator + "  "
              + item.right_data_type.padEnd(5," ") + " " + item.right_value.padEnd(4," ") + " (" + item.right_addressing_mode.padEnd(4," ") + ") "
@@ -245,7 +245,7 @@ function createTAC() {
       
       tac.push({
         operator: operator,
-        write_dest: true,
+        store_dest: true,
         load_left: true,        
         left_data_type: left_data_type,
         left_value: left_value,
@@ -288,7 +288,7 @@ function createTAC() {
         // we don't need "sta _Tx_: lda _Tx_", both can be ommited
            
         if ( previous_dest_value == tac[current_tac_pos].left_value ) {
-          tac[current_tac_pos-1].write_dest = false;
+          tac[current_tac_pos-1].store_dest = false;
           tac[current_tac_pos].load_left = false;
         }
       
@@ -348,6 +348,48 @@ function createTAC() {
 //  Output code for byte expression
 //============================================================================
 
+function ouput6502CodeForByteExpression() {
+
+  function createCode( item, opcode_nr=0 ) {
+    
+    // TODO take optimization_level into account
+    // TODO take optimization_level into account
+    // TODO take optimization_level into account
+    
+    if ( item.load_left != false ) {
+      emitLDA( item.left_value );
+    }
+    
+    switch ( item.operator ) {
+      
+      case "+":
+        // TODO broken here
+        // TODO broken here
+        // TODO broken here
+        // if ( opcode_nr = 0 || target_operand.data_type == "byte" ) {
+          emitCLC();
+        // }
+        emitADC( item.right_value );
+        break;
+        
+      case "-":
+        emitSEC();
+        emitSBC( item.right_value );
+        break;
+      
+    }
+    
+    if ( item.store_dest != false ) {
+      emitSTA( item.dest_value );
+    }
+    
+    opcode_nr++;
+    
+  }
+  
+  tac.forEach( createCode );
+  
+}
 
 
 //============================================================================
@@ -368,10 +410,12 @@ function handleLet() {
   
   parseMathExpressionToMathStack();
   // optimizeStackCode();
-  math_stack.forEach(ouputStackCode); // Debug output of Stack code
+  math_stack.forEach( ouputStackCode ); // Debug output of Stack code
   
   createTAC();
-  tac.forEach(ouputTacCode); // Debug output of TAC code
+  tac.forEach( ouputTacCode ); // Debug output of TAC code
+  
+  ouput6502CodeForByteExpression();
   
 }
 

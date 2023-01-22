@@ -8,11 +8,20 @@ function postSourceToTextareaSource( loaded_source_file ) {
   
   textarea_source.textContent = loaded_source_file.target.result;
   
-    // ==== MAIN CALL TO COMPILE AFTER LOADING ===================
+  // TODO broken when trying to reload same file 
+  // TODO broken when trying to reload same file 
+  // TODO broken when trying to reload same file 
+  // TODO broken when trying to reload same file 
+  
+  // loaded_source_file.value = "";
+  // loaded_source_file.target.value ="";
+  // loaded_source_file.target.result ="";
+  
+  // ==== MAIN CALL TO COMPILE AFTER LOADING ===================
     
-    compile();
+  compile();
     
-    // ==== MAIN CALL TO COMPILE AFTER LOADING ===================
+  // ==== MAIN CALL TO COMPILE AFTER LOADING ===================
   
 }
 
@@ -24,9 +33,19 @@ function loadSourceFile() {
     var reader = new FileReader();
     
     reader.addEventListener( "load", postSourceToTextareaSource );
-    reader.readAsBinaryString(file_name);  
+    reader.readAsBinaryString(file_name);
     
-  } 
+  }
+  
+  // TODO broken when trying to reload same file 
+  // TODO broken when trying to reload same file 
+  // TODO broken when trying to reload same file 
+  // TODO broken when trying to reload same file 
+  
+  // this.value = ""; <--- this was proposed in internet but does not help
+  
+  // this.target.value ="";
+  // this.target.result ="";
   
 }
 
