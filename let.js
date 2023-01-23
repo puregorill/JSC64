@@ -352,10 +352,6 @@ function ouput6502CodeForByteExpression() {
 
   function createCode( item, opcode_nr=0 ) {
     
-    // TODO take optimization_level into account
-    // TODO take optimization_level into account
-    // TODO take optimization_level into account
-    
     if ( item.load_left != false ) {
       emitLDA( item.left_value );
     }
@@ -363,12 +359,9 @@ function ouput6502CodeForByteExpression() {
     switch ( item.operator ) {
       
       case "+":
-        // TODO broken here
-        // TODO broken here
-        // TODO broken here
-        // if ( opcode_nr = 0 || target_operand.data_type == "byte" ) {
+        if ( opcode_nr == 0 || target_operand.data_type == "byte" ) {
           emitCLC();
-        // }
+        }
         emitADC( item.right_value );
         break;
         

@@ -6,16 +6,9 @@ file_name.addEventListener( "change", loadSourceFile );
 
 function postSourceToTextareaSource( loaded_source_file ) {
   
+  // TODO broken when trying to reload same file 
+  
   textarea_source.textContent = loaded_source_file.target.result;
-  
-  // TODO broken when trying to reload same file 
-  // TODO broken when trying to reload same file 
-  // TODO broken when trying to reload same file 
-  // TODO broken when trying to reload same file 
-  
-  // loaded_source_file.value = "";
-  // loaded_source_file.target.value ="";
-  // loaded_source_file.target.result ="";
   
   // ==== MAIN CALL TO COMPILE AFTER LOADING ===================
     
@@ -38,14 +31,10 @@ function loadSourceFile() {
   }
   
   // TODO broken when trying to reload same file 
-  // TODO broken when trying to reload same file 
-  // TODO broken when trying to reload same file 
-  // TODO broken when trying to reload same file 
   
   // this.value = ""; <--- this was proposed in internet but does not help
-  
-  // this.target.value ="";
-  // this.target.result ="";
+  // this.target.value =""; <--- this too, nothing works
+  // this.target.result =""; <--- this too, nothing works
   
 }
 

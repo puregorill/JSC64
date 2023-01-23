@@ -44,7 +44,7 @@ function compile() {
   
   // --- Block ------------------------------------------------------------------------------------------------------
   
-  for ( current_source_line_index = 0; current_source_line_index < source_line.length; current_source_line_index++) {
+  for ( current_source_line_index = 0; current_source_line_index < source_line.length; current_source_line_index++ ) {
     
     tokenizeCurrentSourceLine();   // returns with global "current_token_index = 0"
     //emitCurrentSourceLineAsCommentToCode(); // (for debugging)
