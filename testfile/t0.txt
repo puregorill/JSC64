@@ -1,13 +1,19 @@
 
-let a = b + c * d
+let a = b + c - d ; should end up with a = 10
+
+rts
+
+rts
 
 
 
 
 a:
-  !byte 10
+  !byte 0
 b: 
   !byte 20  
 c:
   !byte 30
+c:
+  !byte 40  
 
