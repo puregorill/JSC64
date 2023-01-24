@@ -350,40 +350,49 @@ function createTAC() {
 
 function ouput6502CodeForByteExpression() {
 
-  function createCode( item, opcode_nr=0 ) {
-    
-    if ( item.load_left != false ) {
-      emitLDA( item.left_value );
+  let opcode_nr = 0;
+
+  for( var i=0; i<tac.length; i++) {
+
+    if ( tac[i].load_left != false ) {
+      emitLDA( tac[i].left_value );
     }
     
-    switch ( item.operator ) {
+    switch ( tac[i].operator ) {
       
       case "+":
         if ( opcode_nr == 0 || target_operand.data_type == "byte" ) {
           emitCLC();
         }
-        emitADC( item.right_value );
+        emitADC( tac[i].right_value );
         break;
         
       case "-":
         emitSEC();
-        emitSBC( item.right_value );
+        emitSBC( tac[i].right_value );
+        break;
+
+      case "*":
+        // TODO
+        break;
+    
+      case "/":
+        // TODO
         break;
       
     }
     
-    if ( item.store_dest != false ) {
-      emitSTA( item.dest_value );
+    if ( tac[i].store_dest != false ) {
+      emitSTA( tac[i].dest_value );
     }
     
     opcode_nr++;
     
   }
-  
-  tac.forEach( createCode );
+    
+
   
 }
-
 
 //============================================================================
 //  Let handler

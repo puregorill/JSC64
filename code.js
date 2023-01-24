@@ -41,7 +41,7 @@ function getCurrentSourceLineAsComment() {
   if ( tmp_line[0] !== ";" )
     comment_line = "; "
   
-  comment_line += tmp_line + " [Line " + source_line[current_source_line_index].line_number + "]"
+  comment_line += tmp_line + " [Line " + source_line[current_source_line_index].line_number + "]";
   
   return comment_line
   

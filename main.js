@@ -45,9 +45,6 @@ var code = [];
     // str line     <-- code line
     
 // TODO partly broken: optimization_level
-// TODO partly broken: optimization_level   
-// TODO partly broken: optimization_level   
-// TODO partly broken: optimization_level   
     
 var optimization_level = 1; // 0: no optimization at all, 1: optimization
 
