@@ -370,7 +370,6 @@ function ouput6502CodeForByteExpression() {
       case "-":
         emitSEC();
         emitSBC( tac[i].right_value );
-        break;
 
       case "*":
         // TODO
@@ -390,8 +389,6 @@ function ouput6502CodeForByteExpression() {
     
   }
     
-
-  
 }
 
 //============================================================================
