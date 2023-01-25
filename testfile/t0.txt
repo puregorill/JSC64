@@ -1,5 +1,7 @@
 
 let a = b + c - d ; should end up with a = 10
+ldx #1
+let [ $c000,x ] = ( ( b + [#40*2-3] ) - ( [c,x] + #2 ) ) - #3
 
 rts
 
