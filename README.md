@@ -52,7 +52,7 @@ ACME is a free crossassembler. It supports NMOS 6502 and more processors.
 State of development
 ********************
 
-Very early stage. Currently working on mathematical parser. Not much else implemented yet.
+Very early stage. Currently working on mathematical parser. Not much else implemented yet. The mathematical parser already works correctly for "dbytes" and the operators "+" and "-".
 
 If you have a look at <main.js> and <main.html>, then it should be no issue to trace the structure of the JS program from there.
 
