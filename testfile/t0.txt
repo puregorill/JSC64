@@ -3,9 +3,6 @@ let a = b + c - d ; should end up with a = 10
 
 rts
 
-rts
-
-
 
 
 a:
@@ -14,6 +11,5 @@ b:
   !byte 20  
 c:
   !byte 30
-c:
-  !byte 40  
-
+d:
+  !byte 40
