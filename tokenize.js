@@ -51,6 +51,16 @@ function tokenizeCurrentSourceLine() {
     }
     
   }
+  function nextTwoCharactersAre( c1, c2 ) {
+
+    if ( source_line[current_source_line_index].line[current_character_position] == c1 && 
+         source_line[current_source_line_index].line[current_character_position+1] == c2 ) {
+          return true
+    } else {
+          return false
+    }
+
+  }
   
   
   //*********************************************************************************************************
@@ -83,8 +93,8 @@ function tokenizeCurrentSourceLine() {
     
     if ( character == ';' ) {
       break;
-    }
-    
+    }    
+
     //-----------------------------------------------------------------------
     //  Left underscore (not allowed because the compiler uses it)
     //-----------------------------------------------------------------------
@@ -185,6 +195,22 @@ function tokenizeCurrentSourceLine() {
       continue;
       
     }
+
+    //-----------------------------------------------------------------------
+    //  Other token type: << shift left
+    //-----------------------------------------------------------------------
+    
+    if ( nextTwoCharactersAre( "<", "<" ) ) {
+      token.push({ // for debugging, see whites in token stream
+        type: 'other',
+        value: "<<",
+        position: current_character_position+1
+      });
+      current_character_position += 2;
+      continue;
+    }
+
+
     
     //-----------------------------------------------------------------------
     //  Other token type, if it is nothing from above 

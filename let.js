@@ -69,7 +69,7 @@ function parseMathExpressionToMathStack() {
     if ( currentTokenValueWithCase() == "(" ) {
       
       nextToken();
-      addExpression();
+      simpleExpression();
       if ( currentTokenValueWithCase() != ")" )
         ThrowSyntaxError( 'Closing ")" expected' );
       nextToken(); // skip ")"
@@ -120,7 +120,27 @@ function parseMathExpressionToMathStack() {
       });
     
     } /* wend */
+
+  }
+  function shiftExpression() {
+  
+    addExpression();
     
+    while ( currentTokenValueWithCase() == "<<" || 
+            currentTokenValueWithCase() == ">>" ) {
+              
+      let operator = currentTokenValueWithCase();
+      nextToken();
+      addExpression();
+      math_stack.push({
+        opcode: operator
+      });
+    
+    } /* wend */
+    
+  }
+  function simpleExpression() {
+    shiftExpression();
   }
   
   //----------------------------------------------------------------------
@@ -128,7 +148,7 @@ function parseMathExpressionToMathStack() {
   //----------------------------------------------------------------------
   
   math_stack = [];
-  addExpression();
+  simpleExpression();
   math_stack.push({
     opcode: "pull",
     data_type: target_operand.data_type,
@@ -204,7 +224,9 @@ function createTAC() {
     if ( math_stack[i].opcode == "+"
       || math_stack[i].opcode == "-"
       || math_stack[i].opcode == "*"
-      || math_stack[i].opcode == "/" ) {
+      || math_stack[i].opcode == "/"
+      || math_stack[i].opcode == "<<"
+      || math_stack[i].opcode == ">>" ) {
         
       // get math operator
       

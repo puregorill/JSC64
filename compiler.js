@@ -48,7 +48,7 @@ function compile() {
     
     tokenizeCurrentSourceLine();   // returns with global "current_token_index = 0"
     //emitCurrentSourceLineAsCommentToCode(); // (for debugging)
-    // debug_emitTokensToCode();   // (for debugging)
+    debug_emitTokensToCode();   // (for debugging)
     
     //-----------------------------------------------------------------------
     //  Keyword handlers
