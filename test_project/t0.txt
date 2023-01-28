@@ -1,0 +1,15 @@
+
+let a = b << #4
+
+rts
+
+
+
+a:
+  !byte 0
+b: 
+  !byte 20  
+c:
+  !byte 30
+d:
+  !byte 40
