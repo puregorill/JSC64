@@ -28,6 +28,11 @@ function emitCodeLine( line ) {
     line: "  "+line
   });
 }
+function emitCodeLineAtLineStart( line ) {
+  code.push({
+    line: line
+  });
+}
 
 //============================================================================
 //  Emit source line and original source line
@@ -77,8 +82,15 @@ function emitSBC( operand ) {
   emitCodeLine( "sbc " + operand );
 }
 
+//============================================================================
+//  Handle Runtime Library
+//============================================================================
 
-
+function handleRuntime() {  
+  emitCodeLineAtLineStart("jmp _end_runtime_");
+  emitCodeLineAtLineStart( '!source "runtime.asm"' );
+  place_runtime_automatically == false;
+}
 
 //============================================================================
 //  Write finally the entire code
@@ -87,14 +99,21 @@ function emitSBC( operand ) {
 function writeCodeToTextAreaOutput() {
   
     textarea_output.value = "";
-    
     textarea_output.value += "*=$0801" + "\n";
     textarea_output.value += "!basic" + "\n";
-    
+    textarea_output.value += '!source "macro.asm"' + "\n";
+
+
     for (var j = 0; j < code.length; j++) {
       textarea_output.value += code[j].line+"\n";
     }
     
+    if ( place_runtime_automatically == true )
+      textarea_output.value += '!source "runtime.asm"' + "\n";
+    
+      textarea_output.value += '!message "End of runtime: ",_end_runtime_' + "\n";   
+
+
 }
 
  

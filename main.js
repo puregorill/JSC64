@@ -48,4 +48,4 @@ var code = [];
     
 var optimization_level = 1; // 0: no optimization at all, 1: optimization
 
-    
+var place_runtime_automatically = true;

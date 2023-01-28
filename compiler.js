@@ -48,7 +48,7 @@ function compile() {
     
     tokenizeCurrentSourceLine();   // returns with global "current_token_index = 0"
     //emitCurrentSourceLineAsCommentToCode(); // (for debugging)
-    debug_emitTokensToCode();   // (for debugging)
+    //debug_emitTokensToCode();   // (for debugging)
     
     //-----------------------------------------------------------------------
     //  Keyword handlers
@@ -70,7 +70,13 @@ function compile() {
     // *** Conditionals ***
          
     else if ( lcase_value == "let" ) handleLet();
-    
+
+
+
+    // *** !source "Runtime.asm" ***
+
+    else if ( lcase_value == "runtime" ) handleRuntime();
+
     
     // *** if nothing matches, output original line ***
     
@@ -82,3 +88,4 @@ function compile() {
   
 }
  
+
