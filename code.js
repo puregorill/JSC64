@@ -18,6 +18,9 @@ function debug_emitTokensToCode() {
 function DebugCode( text ) {
   emitCodeLine( "; Debug: " + text );
 }
+function emitLineToTextAreaOutput( line ) {
+  textarea_output.value += line + "\n";
+}
 
 //============================================================================
 //  Emit code line parameters
@@ -26,6 +29,11 @@ function DebugCode( text ) {
 function emitCodeLine( line ) {
   code.push({
     line: "  "+line
+  });
+}
+function emitEmptyCodeLine() {
+  code.push({
+    line: ""
   });
 }
 function emitCodeLineAtLineStart( line ) {
@@ -87,9 +95,11 @@ function emitSBC( operand ) {
 //============================================================================
 
 function handleRuntime() {  
-  emitCodeLineAtLineStart("jmp _end_runtime_");
+  emitCodeLineAtLineStart( '\n_begin_runtime_:' );
+  emitCodeLineAtLineStart( 'jmp _end_runtime_:' );  
   emitCodeLineAtLineStart( '!source "runtime.asm"' );
-  place_runtime_automatically == false;
+  emitCodeLineAtLineStart( '_end_runtime_:' );
+  place_runtime_automatically = false;
 }
 
 //============================================================================
@@ -99,19 +109,28 @@ function handleRuntime() {
 function writeCodeToTextAreaOutput() {
   
     textarea_output.value = "";
-    textarea_output.value += "*=$0801" + "\n";
-    textarea_output.value += "!basic" + "\n";
-    textarea_output.value += '!source "macro.asm"' + "\n";
-
+    emitLineToTextAreaOutput( "*=$0801" );
+    emitLineToTextAreaOutput( "!basic" );
+    emitLineToTextAreaOutput( '!source "macro.asm"\n' );
 
     for (var j = 0; j < code.length; j++) {
       textarea_output.value += code[j].line+"\n";
     }
     
-    if ( place_runtime_automatically == true )
-      textarea_output.value += '!source "runtime.asm"' + "\n";
+    if ( no_error ) {
+
+      if ( place_runtime_automatically == true ) {
+        emitLineToTextAreaOutput( '\n_begin_runtime_:' );
+        emitLineToTextAreaOutput( '!source "runtime.asm"' );
+        emitLineToTextAreaOutput( '_end_runtime_:' );
+      }
+
+      emitLineToTextAreaOutput( '\n_end_program_with_runtime_:' );
+
+      emitLineToTextAreaOutput( '\n!message "Program (with runtime): ",'+start_address+',"-",_end_program_with_runtime_," (",_end_program_with_runtime_-'+start_address+'," bytes)"' );      
+      emitLineToTextAreaOutput( '!message "Runtime: ",_begin_runtime_,"-",_end_runtime_," (",_end_runtime_-_begin_runtime_," bytes)"' );      
     
-      textarea_output.value += '!message "End of runtime: ",_end_runtime_' + "\n";   
+    }   
 
 
 }

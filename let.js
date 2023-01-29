@@ -400,6 +400,16 @@ function ouput6502CodeForByteExpression() {
       case "/":
         // TODO
         break;
+
+      case "<<":
+        ThrowSyntaxErrorIfOperandIsNotImmediate( tac[i].right_addressing_mode );
+        emitCodeLine( "+SHL " + tac[i].right_value.substring(1) );
+        break;
+
+      case ">>":
+        ThrowSyntaxErrorIfOperandIsNotImmediate( tac[i].right_addressing_mode );
+        emitCodeLine( "+SHR " + tac[i].right_value.substring(1) );        
+        break;
       
     }
     
@@ -431,12 +441,14 @@ function handleLet() {
   
   parseMathExpressionToMathStack();
   // optimizeStackCode();
-  math_stack.forEach( ouputStackCode ); // Debug output of Stack code
+  //math_stack.forEach( ouputStackCode ); // Debug output of Stack code
   
   createTAC();
-  tac.forEach( ouputTacCode ); // Debug output of TAC code
+  //tac.forEach( ouputTacCode ); // Debug output of TAC code
   
   ouput6502CodeForByteExpression();
+
+  emitEmptyCodeLine();
   
 }
 

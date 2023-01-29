@@ -11,6 +11,9 @@ function ThrowSyntaxError( message ) {
   emitCodeLine( "\n\n****************************************************************" );
   emitCodeLine( "\n\n" + message ); 
   emitCodeLine( "\n\n****************************************************************" );
+  
+  no_error = false;
+
   writeCodeToTextAreaOutput();
   textarea_output.focus();
   
@@ -27,6 +30,13 @@ function ThrowSyntaxErrorIfEOLInsteadOf( expected ) {
   
   if ( currentTokenType() == 'EOL' ) {
     ThrowSyntaxError( expected + " expected" );
+  }
+  
+}
+function ThrowSyntaxErrorIfOperandIsNotImmediate( operand_addressing_mode ) {
+  
+  if ( operand_addressing_mode != 'imm' ) {
+    ThrowSyntaxError( "Immediate addressing mode expected" );
   }
   
 }
