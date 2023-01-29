@@ -4,7 +4,7 @@
 JSC64 (read: Javascript Compiler for the (Commodore) 64)
 ********************************************************
 
-**For more information read the Wiki on github ( Link: https://github.com/puregorill/JSC64/wiki ) **
+**For more information read the Wiki on github ( Link: https://github.com/puregorill/JSC64/wiki )**
 
 A nonprofessional hobbyist attempting to write a compiler in Javascript for the NMOS 6502/6510 processor and the Commodore 64.
 
