@@ -28,18 +28,6 @@ But I have to stand by that, OOP style was never mine and I could never figure o
 
 <br />
   
-**************************
-How can you execute JSC64?
-**************************
-
-Just start <main.html> in a browser, and the rest of it should be pretty self-explanatory.
-
-You can compile the testfile or type something yourself in the left text field.
-
-If you want to run the generated assembly code (it is kind of ACME style), then I recommend to copy and paste it into C64Studio. From there you can build the binary code and run it directly with e.g. the C64 emulator VICE. Both can be found with a few mouse clicks via google.
-
-<br />
-
 C64Studio is a Commodore development system for Windows on the PC.
 
 VICE ("Versatile Commodore Emulator", for Windows also WinVICE) is a program that can execute programs for Commodore's 8-bit computers, e.g. the C64, the PET, VIC20 and much more.
