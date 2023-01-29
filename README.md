@@ -4,7 +4,7 @@
 JSC64 (read: Javascript Compiler for the (Commodore) 64)
 ********************************************************
 
-**For more information read the Wiki.**
+**For more information read the Wiki on github ( Link: https://github.com/puregorill/JSC64/wiki ) **
 
 A nonprofessional hobbyist attempting to write a compiler in Javascript for the NMOS 6502/6510 processor and the Commodore 64.
 
@@ -28,19 +28,11 @@ But I have to stand by that, OOP style was never mine and I could never figure o
 
 <br />
   
-C64Studio is a Commodore development system for Windows on the PC.
-
-VICE ("Versatile Commodore Emulator", for Windows also WinVICE) is a program that can execute programs for Commodore's 8-bit computers, e.g. the C64, the PET, VIC20 and much more.
-
-ACME is a free crossassembler. It supports NMOS 6502 and more processors.
-
-<br />
-  
 ********************
 State of development
 ********************
 
-Very early stage. Currently working on mathematical parser. Not much else implemented yet. The mathematical parser already works correctly for "dbytes" and the operators "+" and "-".
+Very early stage. Currently working on mathematical parser. Not much else implemented yet. 
 
 If you have a look at <main.js> and <main.html>, then it should be no issue to trace the structure of the JS program from there.
 
