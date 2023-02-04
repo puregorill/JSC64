@@ -31,7 +31,7 @@ function emitCodeLine( line ) {
     line: "  "+line
   });
 }
-function emitEmptyCodeLine() {
+function emitEmptyCodeLineToCode() {
   code.push({
     line: ""
   });
@@ -111,6 +111,7 @@ function writeCodeToTextAreaOutput() {
     textarea_output.value = "";
     emitLineToTextAreaOutput( "*=$0801" );
     emitLineToTextAreaOutput( "!basic" );
+    emitLineToTextAreaOutput( '!source "def64.asm"' );    
     emitLineToTextAreaOutput( '!source "macro.asm"\n' );
 
     for (var j = 0; j < code.length; j++) {
@@ -125,9 +126,9 @@ function writeCodeToTextAreaOutput() {
         emitLineToTextAreaOutput( '_end_runtime_:' );
       }
 
-      emitLineToTextAreaOutput( '\n_end_program_with_runtime_:' );
+      emitLineToTextAreaOutput( '\n_end_program_:' );
 
-      emitLineToTextAreaOutput( '\n!message "Program (with runtime): ",'+start_address+',"-",_end_program_with_runtime_," (",_end_program_with_runtime_-'+start_address+'," bytes)"' );      
+      emitLineToTextAreaOutput( '\n!message "Program (with runtime): ",'+start_address+',"-",_end_program_," (",_end_program_-'+start_address+'," bytes)"' );      
       emitLineToTextAreaOutput( '!message "Runtime: ",_begin_runtime_,"-",_end_runtime_," (",_end_runtime_-_begin_runtime_," bytes)"' );      
     
     }   
