@@ -94,11 +94,8 @@ function emitSBC( operand ) {
 //  Handle Runtime Library
 //============================================================================
 
-function handleRuntime() {  
-  emitCodeLineAtLineStart( '\n_begin_runtime_:' );
-  emitCodeLineAtLineStart( 'jmp _end_runtime_:' );  
-  emitCodeLineAtLineStart( '!source "runtime.asm"' );
-  emitCodeLineAtLineStart( '_end_runtime_:' );
+function handleRuntime() {
+  emitCodeLineAtLineStart('\n!source "runtime\\runtime.asm"' );
   place_runtime_automatically = false;
 }
 
@@ -111,8 +108,8 @@ function writeCodeToTextAreaOutput() {
     textarea_output.value = "";
     emitLineToTextAreaOutput( "*=$0801" );
     emitLineToTextAreaOutput( "!basic" );
-    emitLineToTextAreaOutput( '!source "def64.asm"' );    
-    emitLineToTextAreaOutput( '!source "macro.asm"\n' );
+    emitLineToTextAreaOutput( '!source "runtime\\def64.asm"' );    
+    emitLineToTextAreaOutput( '!source "runtime\\macro.asm"\n' );
 
     for (var j = 0; j < code.length; j++) {
       textarea_output.value += code[j].line+"\n";
@@ -121,18 +118,12 @@ function writeCodeToTextAreaOutput() {
     if ( no_error ) {
 
       if ( place_runtime_automatically == true ) {
-        emitLineToTextAreaOutput( '\n_begin_runtime_:' );
-        emitLineToTextAreaOutput( '!source "runtime.asm"' );
-        emitLineToTextAreaOutput( '_end_runtime_:' );
+        emitLineToTextAreaOutput( '\n!source "runtime\\runtime.asm"' );
       }
 
-      emitLineToTextAreaOutput( '\n_end_program_:' );
-
-      emitLineToTextAreaOutput( '\n!message "Program (with runtime): ",'+start_address+',"-",_end_program_," (",_end_program_-'+start_address+'," bytes)"' );      
-      emitLineToTextAreaOutput( '!message "Runtime: ",_begin_runtime_,"-",_end_runtime_," (",_end_runtime_-_begin_runtime_," bytes)"' );      
+      emitLineToTextAreaOutput( '!source "runtime\\messages.asm"' );
     
     }   
-
 
 }
 
