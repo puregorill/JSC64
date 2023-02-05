@@ -20,6 +20,7 @@ This project fulfills 2 learning goals for me personally:
   1) To take first steps in javascript (I just started learning javascript a week before starting this toy compiler project)
   2) To develop a small toy compiler
   3) Output of a readable assembler listing to learn from. Possibly the most important goal in mind.
+  4) No .exe files and unreadable source, just a browser (and some runtime files that are also readable) and you are ready to go. Possibly the most important goal in mind (combined with 3).
 
 <br />
 
