@@ -4,16 +4,12 @@
 !source "runtime\macro.asm"
 
 
-; let a = b << #4 [Line 2]
+; let a = b / d [Line 3]
   lda b
-  +_SHL_ 4
+  +_CALL_PROC_IDIV888_ d
   sta a
 
   rts
-
-!source "runtime\runtime.asm"
-  nop
-  nop
   a:
   !byte 0
   b:
@@ -22,4 +18,6 @@
   !byte 30
   d:
   !byte 40
+
+!source "runtime\runtime.asm"
 !source "runtime\messages.asm"

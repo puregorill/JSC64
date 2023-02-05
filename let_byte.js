@@ -28,14 +28,22 @@ function ouput6502CodeForByteExpression() {
       case "-":
         emitSEC();
         emitSBC( tac[i].right_value );
-        break;
+        break; 
 
       case "*":
-        // TODO
+        if ( tac[i].right_addressing_mode == "imm" ) {
+          emitCodeLine( "+_IMUL888I_ " + tac[i].right_value.substring(1) );
+        } else {
+          emitCodeLine( "+_CALL_PROC_IMUL888_ " + tac[i].right_value );
+        }
         break;
       
       case "/":
-        // TODO
+        if ( tac[i].right_addressing_mode == "imm" ) {
+          emitCodeLine( "+_IDIV888I_ " + tac[i].right_value.substring(1) );
+        } else {
+          emitCodeLine( "+_CALL_PROC_IDIV888_ " + tac[i].right_value );
+        }
         break;
   
       case "<<":
@@ -47,7 +55,7 @@ function ouput6502CodeForByteExpression() {
         ThrowSyntaxErrorIfOperandIsNotImmediate( tac[i].right_addressing_mode );
         emitCodeLine( "+_SHR_ " + tac[i].right_value.substring(1) );        
         break;
-        
+
     }
       
     if ( tac[i].store_dest != false ) {
