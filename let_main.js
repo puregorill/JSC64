@@ -158,9 +158,9 @@ function parseMathExpressionToMathStack() {
   
 }
 
-// TODO optimizeStackCode()
 function optimizeStackCode() {
   // stub
+  // TODO optimizeStackCode()
 }
 
 //============================================================================
@@ -227,7 +227,7 @@ function createTAC() {
       || math_stack[i].opcode == "/"
       || math_stack[i].opcode == "<<"
       || math_stack[i].opcode == ">>" ) {
-        
+                
       // get math operator
       
       let operator = math_stack[i].opcode;
@@ -280,7 +280,7 @@ function createTAC() {
         dest_addressing_mode: math_stack[i-2].addressing_mode        
       });
       
-      // --- some tiny optimization reasons ---------------
+      // --- some tiny optimizations ----------------------
       
       if ( optimization_level > 0 ) {
       
@@ -382,11 +382,11 @@ function handleLet() {
   createTAC();
   //tac.forEach( ouputTacCode ); // Debug output of TAC code
   
-  ouput6502CodeForByteExpression();
+  if ( target_operand.data_type == "word" ) 
+    ThrowSyntaxError( '"let word" is not implemented yet')
+  else // "byte" and "dbyte"
+    ouput6502CodeForByteExpression();
 
   emitEmptyCodeLineToCode();
   
-}
-
-
- 
+} 

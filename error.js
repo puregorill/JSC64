@@ -33,10 +33,10 @@ function ThrowSyntaxErrorIfEOLInsteadOf( expected ) {
   }
   
 }
-function ThrowSyntaxErrorIfOperandIsNotImmediate( operand_addressing_mode ) {
+function ThrowSyntaxErrorIfOperandIsNotImmediate( operand_addressing_mode, operand_value ) {
   
   if ( operand_addressing_mode != 'imm' ) {
-    ThrowSyntaxError( "Immediate addressing mode expected" );
+    ThrowSyntaxError( 'Immediate addressing mode expected in operand "'+operand_value+'"' );
   }
   
 }

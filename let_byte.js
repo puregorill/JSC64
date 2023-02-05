@@ -47,12 +47,12 @@ function ouput6502CodeForByteExpression() {
         break;
   
       case "<<":
-        ThrowSyntaxErrorIfOperandIsNotImmediate( tac[i].right_addressing_mode );
+        ThrowSyntaxErrorIfOperandIsNotImmediate( tac[i].right_addressing_mode, tac[i].right_value );
         emitCodeLine( "+_SHL_ " + tac[i].right_value.substring(1) );
         break;
   
       case ">>":
-        ThrowSyntaxErrorIfOperandIsNotImmediate( tac[i].right_addressing_mode );
+        ThrowSyntaxErrorIfOperandIsNotImmediate( tac[i].right_addressing_mode, tac[i].right_value );
         emitCodeLine( "+_SHR_ " + tac[i].right_value.substring(1) );        
         break;
 
