@@ -34,7 +34,7 @@ State of development
 
 Very early stage. Currently working on mathematical parser. Not much else implemented yet.
 
-**[For more information, read the github wiki topic "...".](https://github.com/puregorill/JSC64/wiki/1.-Quick-start-tutorial,-development-log).**
+**[For more information, read the github wiki topic "Quick start tutorial, development log".](https://github.com/puregorill/JSC64/wiki/1.-Quick-start-tutorial,-development-log)**
 
 If you have a look at <main.js> and <main.html>, then it should be no issue to trace the structure of the JS program from there.
 
