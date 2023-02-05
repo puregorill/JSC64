@@ -1,0 +1,10 @@
+2023-01-25
+The mathematical parser already works correctly for "dbyte" and the operators "+" and "-".
+It does some minor optimizations on the code. The pattern "sta _T0_: lda _T0_" is deleted. _T0_ is a temporary variable for expression calculation. The result remains in the accumulator anyway and therefore does not have to be saved first and then reloaded.
+
+2023-01-29
+Added operators "<<" and ">>" for "dbytes". Added including "macro.asm" and "runtime.asm".
+
+2023-02-05
+The mathematical parser now works for "dbyte" and "byte" and the operators "<< >> + - / *", all on an 8-bit basis. Macros and runtime procedures exist for this, which are included in the programm if they are needed. The list of runtime macros/procedures now includes "runtime.asm", "macro.asm", "def64.asm", "messages.asm".
+
