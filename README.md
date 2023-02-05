@@ -4,7 +4,7 @@
 JSC64 (read: Javascript Compiler for the (Commodore) 64)
 ********************************************************
 
-**[For more information read the Wiki on github](https://github.com/puregorill/JSC64/wiki)**
+**[For more information read the Wiki on github](https://github.com/puregorill/JSC64/wiki).**
 
 A nonprofessional hobbyist attempting to write a compiler in Javascript for the NMOS 6502/6510 processor and the Commodore 64.
 
@@ -32,9 +32,9 @@ But I have to stand by that, OOP style was never mine and I could never figure o
 State of development
 ********************
 
-Very early stage. Currently working on mathematical parser. Not much else implemented yet. 
+Very early stage. Currently working on mathematical parser. Not much else implemented yet.
 
-See: https://github.com/puregorill/JSC64/wiki/1.-Quick-start-tutorial,-development-log
+**[For more information read the Quick start tutorial and development log on the Wiki on github]([https://github.com/puregorill/JSC64/wiki](https://github.com/puregorill/JSC64/wiki/1.-Quick-start-tutorial,-development-log).**
 
 If you have a look at <main.js> and <main.html>, then it should be no issue to trace the structure of the JS program from there.
 
