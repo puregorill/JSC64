@@ -6,7 +6,7 @@
 //  Output code for byte expression
 //============================================================================
 
-function ouput6502CodeForByteExpression() {
+function output6502CodeForByteExpression() {
       
   let opcode_nr = 0;
   

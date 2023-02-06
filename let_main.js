@@ -380,13 +380,13 @@ function handleLet() {
   //math_stack.forEach( ouputStackCode ); // Debug output of Stack code
   
   createTAC();
-  tac.forEach( ouputTacCode ); // Debug output of TAC code
+  //tac.forEach( ouputTacCode ); // Debug output of TAC code
   
   if ( target_operand.data_type == "word" ) 
-    ThrowSyntaxError( '"let word" is not implemented yet')
+    output6502CodeForWordExpression();
   else // "byte" and "dbyte"
-    ouput6502CodeForByteExpression();
+    output6502CodeForByteExpression();
 
   emitEmptyCodeLineToCode();
   
-} 
+}
