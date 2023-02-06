@@ -259,7 +259,7 @@ function createTAC() {
       
       math_stack[i-2].opcode = "push";
       math_stack[i-2].value = dest_value;
-      math_stack[i-2].data_type = "dbyte";
+      math_stack[i-2].data_type = target_operand.data_type;
       math_stack[i-2].addressing_mode = "abs";
       
       
@@ -380,7 +380,7 @@ function handleLet() {
   //math_stack.forEach( ouputStackCode ); // Debug output of Stack code
   
   createTAC();
-  //tac.forEach( ouputTacCode ); // Debug output of TAC code
+  tac.forEach( ouputTacCode ); // Debug output of TAC code
   
   if ( target_operand.data_type == "word" ) 
     ThrowSyntaxError( '"let word" is not implemented yet')

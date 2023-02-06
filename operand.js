@@ -15,6 +15,7 @@ function getOperand() {
     nextToken();
   } else if ( currentTokenValue() == "byte" ) {
    operand.data_type = "byte";
+   nextToken();
   } else {
    operand.data_type = "dbyte";
   }
