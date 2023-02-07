@@ -343,6 +343,8 @@ function createTAC() {
     
     tac.push({
       operator: "=",
+      store_dest: true,
+      load_left: true,      
       left_data_type: math_stack[i-2].data_type,
       left_value: math_stack[i-2].value,
       left_addressing_mode: math_stack[i-2].addressing_mode,
@@ -382,11 +384,11 @@ function handleLet() {
   createTAC();
   //tac.forEach( ouputTacCode ); // Debug output of TAC code
   
-  if ( target_operand.data_type == "word" ) 
+  if ( target_operand.data_type == "word" )
     output6502CodeForWordExpression();
   else // "byte" and "dbyte"
     output6502CodeForByteExpression();
 
-  emitEmptyCodeLineToCode();
+  emitEmptyCodeLineToCode();  
   
 }

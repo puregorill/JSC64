@@ -1,7 +1,7 @@
 /*****************************************************************************
     OPERAND
  *****************************************************************************/
- 
+
 function getOperand() {
   
   // --- operand object ---------------------------------------------
@@ -68,6 +68,24 @@ function getOperand() {
   return operand;
   
 }
+function getLoOperand( operand_value, operand_addressing_mode ) {
 
+  if ( operand_addressing_mode == "imm" )
+    return "#<(" + operand_value.substring(1) + ")";
+  else
+    return operand_value;
 
- 
+}
+function getHiOperand( operand_value, operand_addressing_mode ) {
+
+  if ( operand_addressing_mode == "imm" )
+    return "#>(" + operand_value.substring(1) + ")";
+  else if ( operand_addressing_mode == "abs" )
+    return operand_value + "+1";
+  else if ( operand_addressing_mode == "absx" || operand_addressing_mode == "absy" )
+    return operand_value.replace( ",", "+1," );  
+
+  // all the other addressing modes make not much sense here
+
+}
+

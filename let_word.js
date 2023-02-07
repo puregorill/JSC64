@@ -2,33 +2,63 @@
     LET WORD
  *****************************************************************************/
 
+function _wordAddition( tac ) {
+  
+  // let word a = byte b + c
+
+/*   if ( tac.left_data_type == "byte" && tac.right_data_type != "byte" ) {
+         
+        
+
+        return;
+  }
+
+  // let word a = b + byte c
+
+  if ( tac.left_data_type != "byte" && tac.right_data_type != "byte" ) {
+         
+        
+
+        return;
+  } */
+
+  // LO Bytes
+
+  emitLDA( getLoOperand( tac.left_value, tac.left_addressing_mode ) );
+  emitCLC();  
+  emitADC( getLoOperand( tac.right_value, tac.right_addressing_mode ) );
+  emitSTA( getLoOperand( tac.dest_value, tac.dest_addressing_mode ) );
+  
+  // HI Bytes
+
+  if ( tac.left_data_type == "byte" )
+    emitLDA( "#0" );
+  else
+    emitLDA( getHiOperand( tac.left_value, tac.left_addressing_mode ) );
+
+  emitCLC();
+
+  if ( tac.right_data_type == "byte" )
+    emitADC( "#0" );
+  else
+    emitADC( getHiOperand( tac.right_value, tac.right_addressing_mode ) );
+
+  emitSTA( getHiOperand( tac.dest_value, tac.dest_addressing_mode ) );
+
+}
 function output6502CodeForWordExpression() {
-
-  ThrowSyntaxError( '"let word" is not implemented yet')
-  return;
-
-  // TODO: Implement Word Math here
 
   let opcode_nr = 0;
 
   for (var i = 0; i < tac.length; i++) {
 
-    if (tac[i].load_left != false) {
-      emitLDA(tac[i].left_value);
-    }
-
-    switch (tac[i].operator) {
+    switch ( tac[i].operator ) {
 
       case "+":
-        if (opcode_nr == 0 || target_operand.data_type == "byte") {
-          emitCLC();
-        }
-        emitADC(tac[i].right_value);
+        _wordAddition( tac[i] );        
         break;
 
       case "-":
-        emitSEC();
-        emitSBC(tac[i].right_value);
         break;
 
       case "*":
@@ -57,10 +87,6 @@ function output6502CodeForWordExpression() {
         emitCodeLine("+_SHR_ " + tac[i].right_value.substring(1));
         break;
 
-    }
-
-    if (tac[i].store_dest != false) {
-      emitSTA(tac[i].dest_value);
     }
 
     opcode_nr++;

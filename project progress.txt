@@ -7,4 +7,3 @@ Added operators "<<" and ">>" for "dbytes". Added including "macro.asm" and "run
 
 2023-02-05
 The mathematical parser now works for "dbyte" and "byte" and the operators "<< >> + - / *", all on an 8-bit basis. Macros and runtime procedures exist for this, which are included in the programm if they are needed. The list of runtime macros/procedures now includes "runtime.asm", "macro.asm", "def64.asm", "messages.asm".
-
