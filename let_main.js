@@ -16,8 +16,6 @@ var tac = [];
     // operator
     // store_dest
     // load_left
-    // store_dest
-    // load_left
     // left_data_type
     // left_value
     // left_addressing_mode

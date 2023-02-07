@@ -89,6 +89,19 @@ function emitADC( operand ) {
 function emitSBC( operand ) {
   emitCodeLine( "sbc " + operand );
 }
+function emitBCC( label ) {
+  emitCodeLine( "bcc " + label );
+}
+function emitINC( operand ) {
+  emitCodeLine( "inc " + operand );
+}
+function emitINY() {
+  emitCodeLine( "iny" );
+}
+function emitLABEL( label ) {
+  emitCodeLine( label+":" );
+}
+
 
 //============================================================================
 //  Handle Runtime Library

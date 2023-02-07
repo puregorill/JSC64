@@ -50,6 +50,8 @@ function getOperand() {
     else
       operand.addressing_mode = "abs";
     
+    // TODO: [(c),x], [(c,y)] must trow an error! -> illegal addressing mode!
+
   } else if ( currentTokenValueWithCase() == "#" ) {
     
     nextToken();
@@ -83,9 +85,12 @@ function getHiOperand( operand_value, operand_addressing_mode ) {
   else if ( operand_addressing_mode == "abs" )
     return operand_value + "+1";
   else if ( operand_addressing_mode == "absx" || operand_addressing_mode == "absy" )
-    return operand_value.replace( ",", "+1," );  
+    return operand_value.replace( ",", "+1," );
+  else 
+    return operand_value;
 
-  // all the other addressing modes make not much sense here
+  // All other addressing modes make no sense here. 
+  // Return the original "operand_value" unmodified.
 
 }
 
