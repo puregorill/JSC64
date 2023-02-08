@@ -72,16 +72,24 @@ function getOperand() {
 }
 function getLoOperand( operand_value, operand_addressing_mode ) {
 
-  if ( operand_addressing_mode == "imm" )
-    return "#<(" + operand_value.substring(1) + ")";
+  if ( operand_addressing_mode == "imm" ) {
+    if ( operand_value == "#0" )
+      return operand_value;
+    else
+      return "#<(" + operand_value.substring(1) + ")";
+  } 
   else
     return operand_value;
 
 }
 function getHiOperand( operand_value, operand_addressing_mode ) {
 
-  if ( operand_addressing_mode == "imm" )
-    return "#>(" + operand_value.substring(1) + ")";
+  if ( operand_addressing_mode == "imm" ) {
+    if ( operand_value == "#0" )
+      return operand_value;
+    else  
+      return "#>(" + operand_value.substring(1) + ")";
+  }
   else if ( operand_addressing_mode == "abs" )
     return operand_value + "+1";
   else if ( operand_addressing_mode == "absx" || operand_addressing_mode == "absy" )

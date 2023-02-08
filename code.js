@@ -2,6 +2,8 @@
     CODE
  *****************************************************************************/
  
+var STA="", LDA="";
+
 //============================================================================
 //  Code related debugging functions
 //============================================================================
@@ -68,14 +70,38 @@ function emitCurrentOriginalSourceLineToCode() {
 }
 
 //============================================================================
+//  Handle optimization
+//============================================================================
+
+
+// TODO variants "#0", "#<(0)", "#>(0)"
+// TODO variants "#0", "#<(0)", "#>(0)"
+// TODO variants "#0", "#<(0)", "#>(0)"
+// TODO variants "#0", "#<(0)", "#>(0)"
+
+
+//============================================================================
 //  Emit 6502 opcodes
 //============================================================================
 
 function emitLDA( operand ) {
+
+  if ( operand == STA || operand == LDA )
+    return;
+      
   emitCodeLine( "lda " + operand );
+  LDA = operand;
+  STA = "";
+
 }
 function emitSTA( operand ) {
+
+  if ( operand == STA || operand == LDA )
+    return;
+      
   emitCodeLine( "sta " + operand );
+  STA = operand;
+
 }
 function emitCLC() {
   emitCodeLine( "clc" );

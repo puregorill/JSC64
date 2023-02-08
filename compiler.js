@@ -45,6 +45,7 @@ function compile() {
   place_runtime_automatically = true;
   no_error = true;
   start_address = "$0801";
+  STA="", LDA="";
   
   // --- Block ------------------------------------------------------------------------------------------------------
   

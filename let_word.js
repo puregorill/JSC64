@@ -2,6 +2,12 @@
     LET WORD
  *****************************************************************************/
 
+function _wordSubtruction( tac ) {
+
+
+
+}
+
 function _wordAddition( tac ) {
   
   // swap left and right if: word b = byte a + x
@@ -71,7 +77,10 @@ function _wordAssignment( tac ) {
 
   if ( tac.left_addressing_mode == "indy" )
     emitINY();
-  emitLDA( getHiOperand( tac.left_value, tac.left_addressing_mode ) );
+  if ( tac.left_data_type == "byte" ) 
+    emitLDA( "#0" );
+  else
+    emitLDA( getHiOperand( tac.left_value, tac.left_addressing_mode ) );
   
   if ( tac.dest_addressing_mode == "indy" && tac.left_addressing_mode != "indy" )
     emitINY();
