@@ -2,11 +2,16 @@
     LET WORD
  *****************************************************************************/
 
-function _wordSubtruction( tac ) {
+//============================================================================
+//  Simple word math expressions
+//============================================================================
 
+// TODO: ROL, ROR ... and don't forget to implement "and" "or" ... also in "byte"!!!!
+// TODO: ROL, ROR ... and don't forget to implement "and" "or" ... also in "byte"!!!!
+// TODO: ROL, ROR ... and don't forget to implement "and" "or" ... also in "byte"!!!!
+// TODO: ROL, ROR ... and don't forget to implement "and" "or" ... also in "byte"!!!!
+// TODO: ROL, ROR ... and don't forget to implement "and" "or" ... also in "byte"!!!!
 
-
-}
 function _wordAddition( tac ) {
   
   // swap left and right if: word b = byte a + x
@@ -65,6 +70,46 @@ function _wordAddition( tac ) {
   emitSTA( getHiOperand( tac.dest_value, tac.dest_addressing_mode ) );
 
 }
+function _wordSubtruction( tac ) {
+
+
+
+}
+function _wordMultiplication( tac ) {
+
+
+
+}
+function _wordDivision( tac ) {
+
+
+
+}
+function _wordAnd( tac ) {
+
+
+
+}
+function _wordOr( tac ) {
+
+
+
+}
+function _wordXor( tac ) {
+
+
+
+}
+function _wordShiftLeft( tac ) {
+
+
+
+}
+function _wordShiftRight( tac ) {
+
+
+
+}
 function _wordAssignment( tac ) {
 
   // LO Bytes
@@ -87,6 +132,10 @@ function _wordAssignment( tac ) {
 
 }
 
+//============================================================================
+//  Output code for word expression
+//============================================================================
+
 function output6502CodeForWordExpression() {
 
   let opcode_nr = 0;
@@ -100,6 +149,7 @@ function output6502CodeForWordExpression() {
         break;
 
       case "-":
+        _wordSubtruction( tac[i] );
         break;
 
       case "*":

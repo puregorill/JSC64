@@ -7,12 +7,12 @@ var math_stack = [];
     // data_type
     // value
     // addressing_mode
-    
+
 //============================================================================
-//  Stack machine math parser
+//  Debug
 //============================================================================
-  
-function ouputStackCode(item) {
+
+function debugOuputStackCode(item) {
   
   let data_type = "";
   let value = "";
@@ -28,6 +28,20 @@ function ouputStackCode(item) {
   DebugCode( item.opcode + " " + data_type + " " + value + addressing_mode );
   
 }
+
+//============================================================================
+//  Optimizer
+//============================================================================
+
+function optimizeStackCode() {
+  // stub
+  // TODO optimizeStackCode()
+}
+
+//============================================================================
+//  Stack machine math parser
+//============================================================================
+  
 function parseMathExpressionToMathStack() {
   
   //----------------------------------------------------------------------
@@ -96,12 +110,15 @@ function parseMathExpressionToMathStack() {
     } /* wend */
 
   }
-  function shiftExpression() {
+  function shiftAndLogicalExpression() {
   
     addExpression();
     
-    while ( currentTokenValueWithCase() == "<<" || 
-            currentTokenValueWithCase() == ">>" ) {
+    while ( currentTokenValueWithCase() == "&" ||
+            currentTokenValueWithCase() == "|" ||
+            currentTokenValueWithCase() == "^" ||
+            currentTokenValueWithCase() == ">>" ||
+            currentTokenValueWithCase() == ">>" )  {
               
       let operator = currentTokenValueWithCase();
       nextToken();
@@ -114,7 +131,7 @@ function parseMathExpressionToMathStack() {
     
   }
   function simpleExpression() {
-    shiftExpression();
+    shiftAndLogicalExpression();
   }
   
   //----------------------------------------------------------------------
@@ -130,8 +147,4 @@ function parseMathExpressionToMathStack() {
     addressing_mode: target_operand.addressing_mode
   });
   
-}
-function optimizeStackCode() {
-  // stub
-  // TODO optimizeStackCode()
 }

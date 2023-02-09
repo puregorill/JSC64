@@ -11,6 +11,9 @@ The mathematical parser now works for "dbyte" and "byte" and the operators "<< >
 Macros and runtime procedures exist for this, which are included in the programm if they are needed. The list of runtime macros/procedures now includes "runtime.asm", "macro.asm", "def64.asm", "messages.asm".
 
 2023-02-09
-Refactoring of the let code to multiple files. Math parser now works for "word" with operator "+". 
+Refactoring of the "let" code to multiple source files. 
+Math parser now works for "word" with operator "+".  
+Math parser for "byte" and "dbyte" is getting close to being complete.  
+Operators "+ - * / & | ^ << >>" are implemented on "byte" and "dbyte" level.  
 Optimization of "emitLDA" and "emitSTA" so that the same operand is not loaded twice unnecessarily.
 

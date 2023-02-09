@@ -45,7 +45,19 @@ function output6502CodeForByteExpression() {
           emitMacro( "+_CALL_PROC_IDIV888_ " + tac[i].right_value );
         }
         break;
-  
+
+      case "&":
+        emitAND( tac[i].right_value );
+        break;
+
+      case "|":
+        emitORA( tac[i].right_value );
+        break;
+
+      case "^":
+        emitEOR( tac[i].right_value );
+        break;
+
       case "<<":
         ThrowSyntaxErrorIfOperandIsNotImmediate( tac[i].right_addressing_mode, tac[i].right_value );
         emitMacro( "+_SHL_ " + tac[i].right_value.substring(1) );

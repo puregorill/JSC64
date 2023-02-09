@@ -15,12 +15,12 @@ var tac = [];
     // dest_data_type
     // dest_value
     // dest_addressing_mode
-        
+     
 //============================================================================
-//  Create TAC from stack code
-//============================================================================
+//  Debug
+//============================================================================   
 
-function ouputTacCode(item) { 
+function debugOuputTacCode(item) { 
   
   DebugCode(   item.dest_data_type.padEnd(5," ") + " " + item.dest_value.padEnd(4," ") + " [" + item.store_dest.toString().substr(0,1) + "] (" + item.dest_addressing_mode.padEnd(4," ")  + ")  =  "
              + item.left_data_type.padEnd(5," ") + " " + item.left_value.padEnd(4," ") + " [" + item.load_left.toString().substr(0,1)  + "] (" + item.left_addressing_mode.padEnd(4," ")  + ")  "
@@ -29,6 +29,11 @@ function ouputTacCode(item) {
            );
   
 }
+
+//============================================================================
+//  Create TAC from stack code
+//============================================================================
+
 function createTAC() {
   
   let free_temp = [];
@@ -78,6 +83,9 @@ function createTAC() {
       || math_stack[i].opcode == "-"
       || math_stack[i].opcode == "*"
       || math_stack[i].opcode == "/"
+      || math_stack[i].opcode == "&"
+      || math_stack[i].opcode == "|"
+      || math_stack[i].opcode == "^"                  
       || math_stack[i].opcode == "<<"
       || math_stack[i].opcode == ">>" ) {
                 
@@ -140,7 +148,8 @@ function createTAC() {
         let current_tac_pos = tac.length-1;
         let tac_operator = tac[current_tac_pos].operator;
    
-        if (  ( tac_operator=="*" || tac_operator=="+" ) && 
+        if (  ( tac_operator=="*" || tac_operator=="+" || 
+                tac_operator=="&" || tac_operator=="|" || tac_operator=="^" ) && 
               ( tac[current_tac_pos].left_addressing_mode == "imm" || 
                 previous_dest_value == tac[current_tac_pos].right_value )  ) {
           

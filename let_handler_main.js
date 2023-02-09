@@ -25,10 +25,10 @@ function handleLet() {
   
   parseMathExpressionToMathStack();
   //optimizeStackCode();
-  //math_stack.forEach( ouputStackCode ); // Debug output of Stack code
+  //math_stack.forEach( debugOuputStackCode )
   
   createTAC();
-  //tac.forEach( ouputTacCode ); // Debug output of TAC code
+  tac.forEach( debugOuputTacCode )
   
   if ( target_operand.data_type == "word" )
     output6502CodeForWordExpression();

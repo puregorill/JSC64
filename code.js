@@ -73,13 +73,6 @@ function emitCurrentOriginalSourceLineToCode() {
 //  Handle optimization
 //============================================================================
 
-
-// TODO variants "#0", "#<(0)", "#>(0)"
-// TODO variants "#0", "#<(0)", "#>(0)"
-// TODO variants "#0", "#<(0)", "#>(0)"
-// TODO variants "#0", "#<(0)", "#>(0)"
-
-
 //============================================================================
 //  Emit 6502 opcodes
 //============================================================================
@@ -125,6 +118,21 @@ function emitSEC() {
 }
 function emitADC( operand ) {  
   emitCodeLine( "adc " + operand );
+  current_LDA_operand = "";
+  current_STA_operand = "";
+}
+function emitAND( operand ) {  
+  emitCodeLine( "and " + operand );
+  current_LDA_operand = "";
+  current_STA_operand = "";
+}
+function emitORA( operand ) {  
+  emitCodeLine( "ora " + operand );
+  current_LDA_operand = "";
+  current_STA_operand = "";
+}
+function emitEOR( operand ) {  
+  emitCodeLine( "eor " + operand );
   current_LDA_operand = "";
   current_STA_operand = "";
 }
