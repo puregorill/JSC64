@@ -28,8 +28,6 @@ I'm more of a C person, Basic person and Pascal person, so I don't have much kno
 
 But I have to stand by that, OOP style was never mine and I could never figure out what it was all about. Maybe it's my age, I'm from the C64 era and learned to code like that (as a hobbyist, mind you).
 
-<br />
-  
 ********************
 State of development
 ********************
@@ -43,8 +41,6 @@ If you have a look at <main.js> and <main.html>, then it should be no issue to t
 
 Codebase not extremely, but still a bit messed up and is certainly subject to future changes and restructuring.
 
-<br />
- 
 *******************
 One word of warning
 *******************
