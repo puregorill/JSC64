@@ -16,4 +16,5 @@ Math parser now works for "word" with operator "+".
 Math parser for "byte" and "dbyte" is getting close to being complete.  
 Operators "+ - * / & | ^ << >>" are implemented on "byte" and "dbyte" level.  
 Optimization of "emitLDA" and "emitSTA" so that the same operand is not loaded twice unnecessarily.
+"print" with immediate string 'print "hello world"' added.
 

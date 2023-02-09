@@ -2,7 +2,14 @@
     CODE
  *****************************************************************************/
  
+var auto_code;
 var current_STA_operand, current_LDA_operand;
+
+function initCode(){
+  code = [];
+  auto_code = [];
+  auto_code_label_no = -1;
+}
 
 //============================================================================
 //  Code related debugging functions
@@ -25,7 +32,7 @@ function emitLineToTextAreaOutput( line ) {
 }
 
 //============================================================================
-//  Emit code line parameters
+//  Emit code.line & auto_code.line
 //============================================================================
 
 function emitCodeLine( line ) {
@@ -33,16 +40,23 @@ function emitCodeLine( line ) {
     line: "  "+line
   });
 }
-function emitEmptyCodeLineToCode() {
+function emitEmptyCodeLine() {
   code.push({
     line: ""
   });
 }
-function emitCodeLineAtLinecurrent_STA_operandrt( line ) {
+function emitCodeAtLineBegin( line ) {
   code.push({
     line: line
   });
 }
+
+function emitAutoCodeLineAtLineBegin( line ) {
+  auto_code.push({
+    line: line
+  });
+}
+
 
 //============================================================================
 //  Emit source line and original source line
@@ -61,7 +75,6 @@ function getCurrentSourceLineAsComment() {
   return comment_line
   
 }
-
 function emitCurrentSourceLineAsCommentToCode() {
   emitCodeLine( "\n"+getCurrentSourceLineAsComment() );
 }
@@ -126,7 +139,7 @@ function emitAND( operand ) {
   current_LDA_operand = "";
   current_STA_operand = "";
 }
-function emitORA( operand ) {  
+function emitORA( operand ) {
   emitCodeLine( "ora " + operand );
   current_LDA_operand = "";
   current_STA_operand = "";
@@ -138,6 +151,30 @@ function emitEOR( operand ) {
 }
 function emitSBC( operand ) {  
   emitCodeLine( "sbc " + operand );
+  current_LDA_operand = "";
+  current_STA_operand = "";
+}
+
+
+function emitLDY( operand ) {
+
+  // DebugCode( "--- emitLDA ---" );
+  // DebugCode( "LDA: "+current_LDA_operand );
+  // DebugCode( "STA: "+current_STA_operand );
+  // DebugCode( "OP : "+operand );
+
+  // do not load <A> if the same value is already in <A>
+
+  // if ( operand == current_STA_operand || operand == current_LDA_operand )
+  //   return;
+
+  emitCodeLine( "ldy " + operand );
+  // current_LDA_operand = operand;
+  // current_STA_operand = operand;
+
+}
+function emitJSR( operand ) {  
+  emitCodeLine( "jsr " + operand );
   current_LDA_operand = "";
   current_STA_operand = "";
 }
@@ -167,7 +204,7 @@ function emitMacro( line ) {
 //============================================================================
 
 function handleRuntime() {
-  emitCodeLineAtLinecurrent_STA_operandrt('\n!source "runtime\\runtime.asm"' );
+  emitCodeAtLineBegin('\n!source "runtime\\runtime.asm"' );
   place_runtime_automatically = false;
 }
 
@@ -183,11 +220,18 @@ function writeCodeToTextAreaOutput() {
     emitLineToTextAreaOutput( '!source "runtime\\def64.asm"' );    
     emitLineToTextAreaOutput( '!source "runtime\\macro.asm"\n' );
 
-    for (var j = 0; j < code.length; j++) {
-      textarea_output.value += code[j].line+"\n";
+    for ( var j = 0; j < code.length; j++ ) {
+      emitLineToTextAreaOutput( code[j].line );
     }
     
     if ( no_error ) {
+
+      if ( auto_code.length > 0 ) {
+        emitLineToTextAreaOutput("");
+        for ( j = 0; j < auto_code.length; j++ ) {
+          emitLineToTextAreaOutput( auto_code[j].line );
+        }
+      }      
 
       if ( place_runtime_automatically == true ) {
         emitLineToTextAreaOutput( '\n!source "runtime\\runtime.asm"' );

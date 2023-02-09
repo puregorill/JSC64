@@ -209,9 +209,21 @@ function tokenizeCurrentSourceLine() {
       current_character_position += 2;
       continue;
     }
-
-
     
+    //-----------------------------------------------------------------------
+    //  Other token type: << shift right
+    //-----------------------------------------------------------------------
+    
+    if ( nextTwoCharactersAre( ">", ">" ) ) {
+      token.push({ // for debugging, see whites in token stream
+        type: 'other',
+        value: ">>",
+        position: current_character_position+1
+      });
+      current_character_position += 2;
+      continue;
+    }
+
     //-----------------------------------------------------------------------
     //  Other token type, if it is nothing from above 
     //-----------------------------------------------------------------------

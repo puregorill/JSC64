@@ -35,6 +35,6 @@ function handleLet() {
   else // "byte" and "dbyte"
     output6502CodeForByteExpression();
 
-  emitEmptyCodeLineToCode();  
+  emitEmptyCodeLine();  
   
 }

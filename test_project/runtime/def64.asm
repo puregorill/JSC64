@@ -41,7 +41,7 @@ _NUM8_=42
 _CHRGET_  = $73
 _CHRGOT_  = $79
 
-_STROUT0_ = $AB1E     ; PRINT 0-terminated String pointed to by [Y,A] 
+_STROUT0_ = $AB1E     ; PRINT 0-terminated String pointed to by [A,Y] 
 _CHROUT_  = $F1CA     ; PRINT Character in [A]
 _BSOUT_   = _CHROUT_
 _INTOUT_  = $BDCD     ; PRINT unsigned word in [X,A]

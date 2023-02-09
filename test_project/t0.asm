@@ -4,20 +4,14 @@
 !source "runtime\macro.asm"
 
 
-; let a = b / d [Line 3]
-  lda b
-  +_CALL_PROC_IDIV888_ d
-  sta a
+; print "hello world",0 [Line 2]
+  lda #<_A0_
+  ldy #>_A0_
+  jsr _STROUT0_
 
   rts
-  a:
-  !byte 0
-  b:
-  !byte 20
-  c:
-  !byte 30
-  d:
-  !byte 40
+
+_A0_: !pet "hello world",0
 
 !source "runtime\runtime.asm"
 !source "runtime\messages.asm"

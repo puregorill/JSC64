@@ -2,6 +2,10 @@
     OPERAND
  *****************************************************************************/
 
+function getOriginalSourceLineTrimmed( start_pos ) {
+  return source_line[current_source_line_index].line.substring(start_pos).trim();
+}
+
 function getOperand() {
   
   // --- operand object ---------------------------------------------

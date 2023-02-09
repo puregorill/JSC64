@@ -23,6 +23,49 @@ function currentTokenType() {
 //  Compile, Block
 //============================================================================
 
+function _createSourceLinesFromSourceText() {
+  
+  // Split every source line into global var "source_line"
+  
+  var line = textarea_source.value.split('\n');
+  
+  // Trim input, ignore every emtpy line and comment with "//"
+  
+  source_line = [];
+  
+  for (var j = 0; j < line.length; j++) {
+    
+    let tmp_line = line[j].trimLeft();
+    
+    if ( tmp_line !== "" && tmp_line.substring(0,2) !== "//" ) {
+      
+      source_line.push({ 
+        line: line[j], 
+        line_number: j+1
+      });
+      
+    }
+    
+  } /* next */
+  
+}
+function _initCompiler() {
+
+  initCode();
+
+  textarea_output.value = "";
+  code = [];
+  label_nr = -1;
+  auto_code_label_no = -1;
+  place_runtime_automatically = true;
+  no_error = true;
+  current_STA_operand=""; 
+  current_LDA_operand="";
+
+  start_address = "$0801";
+
+}
+
 function compile() {
   
   /*   
@@ -34,19 +77,10 @@ function compile() {
   
   // Split every source line into global var "source_line"
   // Ignore every emtpy line & comment starting with "//"
-  
-  createSourceLinesFromSourceText(); 
- 
-  // Init compiler
-  
-  textarea_output.value = "";
-  code = [];
-  label_nr = -1;
-  place_runtime_automatically = true;
-  no_error = true;
-  start_address = "$0801";
-  current_STA_operand=""; 
-  current_LDA_operand="";
+  // and init compiler then compile
+
+  _createSourceLinesFromSourceText(); 
+  _initCompiler();
   
   // --- Block ------------------------------------------------------------------------------------------------------
   
@@ -62,7 +96,7 @@ function compile() {
     
     let lcase_value = currentTokenValue();
     
-    // *** Block end keywords ( break out of block ) ***
+    // *** Block end keywords ( break out of block ) ******
     
     if ( lcase_value == "endif"
          || lcase_value == "else"
@@ -73,25 +107,39 @@ function compile() {
          
            break;
          
-    // *** Conditionals ***
+    // *** Math *******************************************
          
     else if ( lcase_value == "let" ) handleLet();
+      
+    // *** Print to Screen ********************************
+
+    else if ( lcase_value == "print" ) handlePrint();   
+
+    // *** Conditionals ***********************************
 
 
 
-    // *** !source "Runtime.asm" ***
+    // *** !source "Runtime.asm" **************************
 
     else if ( lcase_value == "runtime" ) handleRuntime();
-
-    
-    // *** if nothing matches, output original line ***
+          
+    // *** if nothing matches, output original line *******
     
     else emitCurrentOriginalSourceLineToCode();
+      
     
   } // next ---------------------------------------------------------------------------------------------------------
   
+  // copy ASM code to clipboard
+
   writeCodeToTextAreaOutput();
-  
+  textarea_output.select();
+  document.execCommand("copy");
+
+  // print a 2nd time to deselect selection
+
+  writeCodeToTextAreaOutput();
+
 }
  
 

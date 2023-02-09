@@ -186,7 +186,7 @@ function createTAC() {
       
       i = i - 2;
   
-    }
+    } /* endif */
     
   } /* next */ 
   
