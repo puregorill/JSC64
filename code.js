@@ -2,7 +2,7 @@
     CODE
  *****************************************************************************/
  
-var STA="", LDA="";
+var current_STA_operand, current_LDA_operand;
 
 //============================================================================
 //  Code related debugging functions
@@ -38,7 +38,7 @@ function emitEmptyCodeLineToCode() {
     line: ""
   });
 }
-function emitCodeLineAtLineStart( line ) {
+function emitCodeLineAtLinecurrent_STA_operandrt( line ) {
   code.push({
     line: line
   });
@@ -86,21 +86,35 @@ function emitCurrentOriginalSourceLineToCode() {
 
 function emitLDA( operand ) {
 
-  if ( operand == STA || operand == LDA )
+  // DebugCode( "--- emitLDA ---" );
+  // DebugCode( "LDA: "+current_LDA_operand );
+  // DebugCode( "STA: "+current_STA_operand );
+  // DebugCode( "OP : "+operand );
+
+  // do not load <A> if the same value is already in <A>
+
+  if ( operand == current_STA_operand || operand == current_LDA_operand )
     return;
-      
+
   emitCodeLine( "lda " + operand );
-  LDA = operand;
-  STA = "";
+  current_LDA_operand = operand;
+  current_STA_operand = operand;
 
 }
 function emitSTA( operand ) {
 
-  if ( operand == STA || operand == LDA )
+  // DebugCode( "--- emitSTA ---" );
+  // DebugCode( "LDA: "+current_LDA_operand );
+  // DebugCode( "STA: "+current_STA_operand );
+  // DebugCode( "OP : "+operand );
+
+  // do not store <A> if the same value was already stored
+
+  if ( operand == current_STA_operand )
     return;
-      
+
   emitCodeLine( "sta " + operand );
-  STA = operand;
+  current_STA_operand = operand;
 
 }
 function emitCLC() {
@@ -109,11 +123,15 @@ function emitCLC() {
 function emitSEC() {
   emitCodeLine( "sec" );
 }
-function emitADC( operand ) {
+function emitADC( operand ) {  
   emitCodeLine( "adc " + operand );
+  current_LDA_operand = "";
+  current_STA_operand = "";
 }
-function emitSBC( operand ) {
+function emitSBC( operand ) {  
   emitCodeLine( "sbc " + operand );
+  current_LDA_operand = "";
+  current_STA_operand = "";
 }
 function emitBCC( label ) {
   emitCodeLine( "bcc " + label );
@@ -126,15 +144,22 @@ function emitINY() {
 }
 function emitLABEL( label ) {
   emitCodeLine( label+":" );
+  current_LDA_operand = "";
+  current_STA_operand = "";  
 }
 
+function emitMacro( line ) {
+  emitCodeLine( line );
+  current_LDA_operand = "";
+  current_STA_operand = "";
+}
 
 //============================================================================
 //  Handle Runtime Library
 //============================================================================
 
 function handleRuntime() {
-  emitCodeLineAtLineStart('\n!source "runtime\\runtime.asm"' );
+  emitCodeLineAtLinecurrent_STA_operandrt('\n!source "runtime\\runtime.asm"' );
   place_runtime_automatically = false;
 }
 
