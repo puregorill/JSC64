@@ -34,7 +34,7 @@ But I have to stand by that, OOP style was never mine and I could never figure o
 State of development
 ********************
 
-Very early stage. Currently working on mathematical parser. Not much else implemented yet.
+Early stage but evolving. Currently working on mathematical parser.
 
 **[For more information, read the github wiki topic "Home".](https://github.com/puregorill/JSC64/wiki)**  
 Scroll down to "Project progress".
