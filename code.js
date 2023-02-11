@@ -134,6 +134,11 @@ function emitADC( operand ) {
   current_LDA_operand = "";
   current_STA_operand = "";
 }
+function emitSBC( operand ) {  
+  emitCodeLine( "sbc " + operand );
+  current_LDA_operand = "";
+  current_STA_operand = "";
+}
 function emitAND( operand ) {  
   emitCodeLine( "and " + operand );
   current_LDA_operand = "";
@@ -149,11 +154,7 @@ function emitEOR( operand ) {
   current_LDA_operand = "";
   current_STA_operand = "";
 }
-function emitSBC( operand ) {  
-  emitCodeLine( "sbc " + operand );
-  current_LDA_operand = "";
-  current_STA_operand = "";
-}
+
 
 
 function emitLDY( operand ) {
